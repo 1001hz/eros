@@ -1,0 +1,19 @@
+<div *ngFor="let wedding of weddings | async">
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{wedding._id}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{wedding.date}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <p>
+      {{wedding._id}} {{wedding.date}}
+    </p>
+  </mat-expansion-panel>
+</div>
+
+

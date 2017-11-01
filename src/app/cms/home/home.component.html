@@ -1,0 +1,6 @@
+<div>
+  <app-add-wedding (onAdd)="onAdd($event)"></app-add-wedding>
+</div>
+<div  *ngIf="(weddings | async)">
+  <app-wedding-list [weddings]="weddings"></app-wedding-list>
+</div>

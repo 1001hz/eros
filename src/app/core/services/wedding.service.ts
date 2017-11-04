@@ -12,7 +12,7 @@ interface AppState {
 @Injectable()
 export class WeddingService {
 
-  public weddings: Subject<Array<Wedding>> = new BehaviorSubject<Array<Wedding>>(new Array<Wedding>());
+  public weddings: Subject<Array<Wedding>> = new BehaviorSubject<Array<Wedding>>(null);
 
   constructor(
     private store: Store<AppState>,
@@ -23,18 +23,20 @@ export class WeddingService {
     } );
   }
 
-  getAllWeddings() {
+  getAllWeddings(): Subject<Array<Wedding>> {
     return this.weddings;
   }
 
-  addNewWedding(weddingData) {
+  addNewWedding(weddingData): void {
     let wedding = new Wedding();
     this.apiService.httpPut().subscribe( (response) => {
+
       response.data._id = '12312';
       response.data.date = '12/12/99';
 
       wedding.makeFromResponse(response.data);
       this.store.dispatch({ type: ADD_WEDDING, payload: wedding });
+
     });
 
   }

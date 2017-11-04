@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule} from './shared/shared.module'; // components, pipes, etc used in many templates, Material2 module
 import { CoreModule} from './core/core.module'; // singletons, spinners, modals, man nav, anything that goes in the app template
 import { AppRoutingModule } from './app-routing.module';
+import { AppConfigModule } from './app-config/app-config.module';
 
 import { StoreModule } from "@ngrx/store";
 import { userReducer } from './shared/reducers/user.reducer';
@@ -32,6 +33,7 @@ let rootReducer = {
     RouterModule,
     SharedModule,
     CoreModule,
+    AppConfigModule,
     StoreModule.forRoot(rootReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states

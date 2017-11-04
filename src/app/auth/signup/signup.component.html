@@ -2,22 +2,29 @@
   <mat-card-title>
     Signup
   </mat-card-title>
-  <div>
-    <mat-form-field class="">
-      <input matInput placeholder="Enter your username" value="">
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <input matInput placeholder="Enter your password" [type]="'password'">
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <input matInput placeholder="Confirm your password" [type]="'password'">
-    </mat-form-field>
-  </div>
-  <div>
-    <button mat-raised-button color="primary">Signup</button>
-  </div>
+  <form [formGroup]="signUpForm" (ngSubmit)="onSignUp(signUpForm.value)">
+    <div>
+      <mat-form-field class="">
+        <input matInput placeholder="Enter your email" value=""  id="email" [formControl]="signUpForm.controls['email']">
+        <mat-error *ngIf="signUpForm.controls['email'].hasError('required') && signUpForm.controls['email'].touched">This field is required</mat-error>
+        <mat-error *ngIf="signUpForm.controls['email'].hasError('email') && signUpForm.controls['email'].touched">This is not a valid email</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Enter your password" [type]="'password'" id="password" [formControl]="signUpForm.controls['password']">
+        <mat-error *ngIf="signUpForm.controls['password'].hasError('required') && signUpForm.controls['password'].touched">This field is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Confirm your password" [type]="'password'" id="confirm" [formControl]="signUpForm.controls['confirm']">
+        <mat-error *ngIf="signUpForm.controls['confirm'].hasError('required') && signUpForm.controls['confirm'].touched">This field is required</mat-error>
+        <mat-error *ngIf="signUpForm.controls['confirm'].value !== signUpForm.controls['password'].value && signUpForm.controls['password'].touched">The passwords don't match</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" [disabled]="!signUpForm.valid || loading">Signup</button>
+    </div>
+  </form>
 </mat-card>

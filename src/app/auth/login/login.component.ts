@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-login',
@@ -9,18 +10,37 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  private loading: boolean;
+  private loginForm: FormGroup;
+
   constructor(
+    fb: FormBuilder,
     private authService: AuthService,
     private router: Router
-  ) { }
-
-  ngOnInit() {
+  ) {
+    this.loginForm = fb.group({
+      'email': ['', [Validators.required, Validators.email]],
+      'password': ['', Validators.required]
+    });
   }
 
-  onLogin() {
-    this.authService.login().subscribe( () => {
-      this.router.navigate(['cms']);
-    });
+  ngOnInit() {
+    this.loading = false;
+  }
+
+  onLogin(value: any) {
+    this.loading = true;
+    this.authService.login(value.email, value.password).subscribe(
+      () => {
+        this.router.navigate(['cms']);
+      },
+      () => {
+
+      },
+      () => {
+        this.loading = false;
+      }
+    );
   }
 
 }

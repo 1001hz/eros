@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IResponse } from '../../shared/interfaces/response';
+import { IResponse } from '../../shared/interfaces/response.interface';
 import { Observable, BehaviorSubject, Subject } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 import { User } from '../../shared/models/user.model';
@@ -12,7 +12,7 @@ interface AppState {
 @Injectable()
 export class UserService {
 
-  public user: Subject<User> = new BehaviorSubject<User>(new User());
+  public user: Subject<User> = new BehaviorSubject<User>(null);
 
   constructor(private store: Store<AppState>) {
     this.store.select('user').subscribe( (u:User) => {
@@ -20,28 +20,34 @@ export class UserService {
     } );
   }
 
-  setUser(response: IResponse): boolean {
-    let _user = new User();
+  setUserFromServerResponse(response: IResponse): User {
+
     //TODO: remove
     response.data._id = '3123';
     response.data.email = '1001hz@';
     response.data.firstName = 'John';
     response.data.lastName = 'Hughes';
     response.data.weddingIds = ['asdasd'];
+    response.data.token = '123123';
 
+    let _user = new User();
+
+    // extract data from server response
     _user.makeFromResponse(response.data);
+
+    // add to store
     this.store.dispatch({ type: SET_USER, payload: _user });
 
-    return true;
+    return _user;
   }
 
-  resetUser(): boolean {
+  resetUser(): void {
+
+    // remove user from store
     this.store.dispatch({ type: RESET_USER });
-
-    return true;
   }
 
-  getUser() {
+  getUser(): Subject<User> {
     return this.user;
   }
 

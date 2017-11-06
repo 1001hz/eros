@@ -8,11 +8,11 @@ export class ToastService {
 
   }
 
-  onSuccess(message: string) {
+  onSuccess(message: string): void {
     alert('Success Toast' + message);
   }
 
-  onError(message: string) {
+  onError(message: string): void {
     alert('Error Toast' + message);
   }
 

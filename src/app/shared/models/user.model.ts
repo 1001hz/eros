@@ -4,7 +4,6 @@ export class User {
   email: string = null;
   firstName: string = null;
   lastName: string = null;
-  weddingIds: Array<string> = [];
   token: string = null;
 
   constructor() {
@@ -15,7 +14,6 @@ export class User {
     this.email = data.email;
     this.firstName = data.firstName;
     this.lastName = data.lastName;
-    this.weddingIds = data.weddingIds;
     this.token = data.token;
   }
 }

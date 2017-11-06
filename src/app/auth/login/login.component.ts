@@ -10,28 +10,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
 
-  private loading: boolean;
-  private loginForm: FormGroup;
+  public loading: boolean;
+  public loginForm: FormGroup;
 
   constructor(
-    fb: FormBuilder,
+    private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {
-    this.loginForm = fb.group({
+
+  }
+
+  ngOnInit() {
+    this.loading = false;
+    this.loginForm = this.fb.group({
       'email': ['', [Validators.required, Validators.email]],
       'password': ['', Validators.required]
     });
   }
 
-  ngOnInit() {
-    this.loading = false;
-  }
-
   onLogin(value: any) {
     this.loading = true;
     this.authService.login(value.email, value.password).subscribe(
-      () => {
+      (successFlag: boolean) => {
         this.router.navigate(['cms']);
       },
       () => {

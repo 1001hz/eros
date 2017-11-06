@@ -10,29 +10,29 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  private loading: boolean;
-  private signUpForm: FormGroup;
+  public loading: boolean;
+  public signUpForm: FormGroup;
 
   constructor(
-    fb: FormBuilder,
+    private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {
-    this.signUpForm = fb.group({
+  }
+
+  ngOnInit() {
+    this.loading = false;
+    this.signUpForm = this.fb.group({
       'email': ['', [Validators.required, Validators.email]],
       'password': ['', Validators.required],
       'confirm': ['', Validators.required],
     });
   }
 
-  ngOnInit() {
-    this.loading = false;
-  }
-
   onSignUp(value: any) {
     this.loading = true;
     this.authService.signup(value.email, value.password).subscribe(
-      () => {
+      (successFlag) => {
         this.router.navigate(['cms']);
       },
       () => {

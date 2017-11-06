@@ -25,7 +25,7 @@ export class AuthService {
     this.config = _config;
   }
 
-  login(email: string, password: string): Observable<any> {
+  login(email: string, password: string): Observable<boolean> {
 
     let data: ILoginRequest = {
       email: email,
@@ -36,6 +36,7 @@ export class AuthService {
       .map( (response: IResponse) => {
         let user: User = this.userService.setUserFromServerResponse(response);
         localStorage.setItem(this.config.tokenKey, user.token);
+        return true;
     });
   }
 
@@ -70,7 +71,7 @@ export class AuthService {
     }
   }
 
-  signup(email: string, password: string): Observable<any> {
+  signup(email: string, password: string): Observable<boolean> {
 
     let data: ISignUpRequest = {
       email: email,
@@ -81,27 +82,33 @@ export class AuthService {
       .map( (response: IResponse) => {
         let user: User = this.userService.setUserFromServerResponse(response);
         localStorage.setItem(this.config.tokenKey, user.token);
+        return true;
       });
   }
 
-  resetPasswordLink(email: string): Observable<any> {
+  resetPasswordLink(email: string): Observable<boolean> {
 
     let data: IResetPasswordLinkRequest = {
       email: email
     };
 
-    return this.apiService.makeRequest(this.config.apiRoutes.resetPasswordLink, data);
+    return this.apiService.makeRequest(this.config.apiRoutes.resetPasswordLink, data)
+      .map( ()=> {
+        return true;
+      });
   }
 
-  resetPassword(password, confirm): Observable<any> {
+  resetPassword(password: string, token: string): Observable<boolean> {
 
     let data: IResetPasswordRequest = {
       password: password,
-      confirm: confirm
+      token: token
     };
 
-    return this.apiService.makeRequest(this.config.apiRoutes.resetPassword, data);
-
+    return this.apiService.makeRequest(this.config.apiRoutes.resetPassword, data)
+      .map( ()=> {
+        return true;
+      })
   }
 
 }

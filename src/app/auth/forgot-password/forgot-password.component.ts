@@ -9,29 +9,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  private requestSent: boolean;
-  private sending: boolean;
-  private resetLinkForm: FormGroup;
+  public requestSent: boolean;
+  public sending: boolean;
+  public resetLinkForm: FormGroup;
 
   constructor(
-    fb: FormBuilder,
+    private fb: FormBuilder,
     private authService: AuthService
   ) {
-    this.resetLinkForm = fb.group({
-      'email': ['', [Validators.required, Validators.email]]
-    });
   }
 
   ngOnInit() {
     this.requestSent = false;
     this.sending = false;
+    this.resetLinkForm = this.fb.group({
+      'email': ['', [Validators.required, Validators.email]]
+    });
   }
 
   onRequestResetLink(value) {
     this.sending = true;
 
-    this.authService.resetPasswordLink(value.email).subscribe( ()=> {
-      this.requestSent = true;
+    this.authService.resetPasswordLink(value.email).subscribe( (successFlag:boolean)=> {
+      this.requestSent = successFlag;
     },
       () => {},
       () => {

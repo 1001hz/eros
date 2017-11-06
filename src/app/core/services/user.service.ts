@@ -27,7 +27,6 @@ export class UserService {
     response.data.email = '1001hz@';
     response.data.firstName = 'John';
     response.data.lastName = 'Hughes';
-    response.data.weddingIds = ['asdasd'];
     response.data.token = '123123';
 
     let _user = new User();

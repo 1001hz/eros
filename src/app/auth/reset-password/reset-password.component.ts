@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -10,28 +10,33 @@ import { Router } from '@angular/router';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  private resetPasswordForm: FormGroup;
-  private sending: boolean;
+  public resetPasswordForm: FormGroup;
+  public sending: boolean;
+  public resetToken: string;
 
   constructor(
-    fb: FormBuilder,
+    private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
-    this.resetPasswordForm = fb.group({
+    this.route.params.subscribe( (params)=> {
+      this.resetToken = params["token"];
+    })
+  }
+
+  ngOnInit() {
+    this.sending = false;
+    this.resetPasswordForm = this.fb.group({
       'password': ['', Validators.required],
       'confirm': ['', Validators.required]
     });
   }
 
-  ngOnInit() {
-    this.sending = false;
-  }
-
   onResetPassword(value) {
     this.sending = true;
 
-    this.authService.resetPassword(value.password, value.confirm).subscribe( ()=> {
+    this.authService.resetPassword(value.password, this.resetToken).subscribe( (successFlag)=> {
         this.router.navigate(['login']);
       },
       () => {},

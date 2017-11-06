@@ -6,6 +6,7 @@
     <button mat-menu-item>
       Hi {{ (user|async).firstName }}
     </button>
+    <button [routerLink]="['cms']" routerLinkActive="active" mat-menu-item>Dashboard</button>
     <button (click)="onLogout()" mat-menu-item>Logout</button>
   </div>
 

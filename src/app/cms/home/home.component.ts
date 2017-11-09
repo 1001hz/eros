@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeddingService } from '../../core/services/wedding.service';
+import { ActivatedRoute } from '@angular/router';
+import { INewWeddingRequest } from '../../shared/interfaces/new-wedding-request.interface';
 
 @Component({
   selector: 'app-home',
@@ -10,13 +12,19 @@ export class HomeComponent implements OnInit {
 
   weddings;
 
-  constructor(private weddingService: WeddingService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private weddingService: WeddingService) { }
 
   ngOnInit() {
-    this.weddings = this.weddingService.getAllWeddings();
+    this.weddings = this.weddingService.weddings;
   }
 
-  onAdd(wedding) {
-    this.weddingService.addNewWedding(wedding);
+  onAdd(formData) {
+    let weddingRequestData: INewWeddingRequest = {
+      name: formData.name,
+      date: formData.date
+    };
+    this.weddingService.addNewWedding(weddingRequestData);
   }
 }

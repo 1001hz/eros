@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
+import { WeddingResolve } from './resolvers/wedding.service';
 
 @NgModule({
   imports: [
@@ -10,6 +11,9 @@ import { MaterialModule } from '../material/material.module';
   exports: [
     MaterialModule
   ],
-  declarations: []
+  declarations: [],
+  providers: [
+    WeddingResolve
+  ]
 })
 export class SharedModule { }

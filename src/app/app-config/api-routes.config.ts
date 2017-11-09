@@ -22,5 +22,9 @@ export const ApiRoutes = {
   resetPassword: {
     method: 'POST',
     path: '/reset-password'
+  },
+  getWeddings: {
+    method: 'GET',
+    path: '/weddings'
   }
 };

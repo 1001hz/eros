@@ -1,0 +1,30 @@
+
+
+<mat-card>
+  <mat-card-title>
+    Add new wedding
+    <button mat-fab>
+      <mat-icon (click)="onOpenForm()">add circle</mat-icon>
+    </button>
+  </mat-card-title>
+
+  <form *ngIf="formOpened" [formGroup]="newWeddingForm" (ngSubmit)="addNewWedding(newWeddingForm.value)">
+    <div>
+      <mat-form-field class="">
+        <input matInput placeholder="Enter the event name" value="" id="name" [formControl]="newWeddingForm.controls['name']">
+        <mat-error *ngIf="newWeddingForm.controls['name'].hasError('required') && newWeddingForm.controls['name'].touched">This field is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Enter the event date" [matDatepicker]="picker" id="date" [formControl]="newWeddingForm.controls['date']">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" [disabled]="!newWeddingForm.valid || loading">Add</button>
+    </div>
+  </form>
+</mat-card>
+

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authService.login(value.email, value.password).subscribe(
       (successFlag: boolean) => {
+        console.log(successFlag);
         this.router.navigate(['cms']);
       },
       () => {

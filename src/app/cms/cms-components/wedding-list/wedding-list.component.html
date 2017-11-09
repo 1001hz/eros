@@ -1,0 +1,23 @@
+<div *ngFor="let wedding of weddings | async">
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{wedding.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{wedding.date}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-list>
+      <a mat-list-item [routerLink]="[wedding._id, 'details']" routerLinkActive="active">The Wedding Details</a>
+      <a mat-list-item [routerLink]="['auth', 'login']" routerLinkActive="active">Invitations</a>
+      <a mat-list-item [routerLink]="['auth', 'login']" routerLinkActive="active">Guest List</a>
+      <a mat-list-item [routerLink]="['auth', 'login']" routerLinkActive="active">Seating Plan</a>
+      <a mat-list-item [routerLink]="['auth', 'login']" routerLinkActive="active">Gift Record</a>
+    </mat-list>
+
+  </mat-expansion-panel>
+</div>
+

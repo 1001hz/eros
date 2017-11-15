@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AddWeddingComponent } from './add-wedding/add-wedding.component';
 import { WeddingListComponent } from './wedding-list/wedding-list.component';
+import { EditDetailsComponent } from './edit-details/edit-details.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { WeddingListComponent } from './wedding-list/wedding-list.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  exports:[AddWeddingComponent, WeddingListComponent],
-  declarations: [AddWeddingComponent, WeddingListComponent]
+  exports:[AddWeddingComponent, WeddingListComponent, EditDetailsComponent],
+  declarations: [AddWeddingComponent, WeddingListComponent, EditDetailsComponent]
 })
 export class CmsComponentsModule { }

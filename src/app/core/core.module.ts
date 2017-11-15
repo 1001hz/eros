@@ -2,6 +2,7 @@ import { NgModule, Optional, SkipSelf, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 import { NavComponent } from './nav/nav.component';
 
@@ -24,7 +25,8 @@ import { LoaderComponent } from './loader/loader.component';
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    HttpModule
   ],
   exports: [
     NavComponent,

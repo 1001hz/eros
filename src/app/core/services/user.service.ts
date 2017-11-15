@@ -20,19 +20,12 @@ export class UserService {
     } );
   }
 
-  setUserFromServerResponse(response: IResponse): User {
-
-    //TODO: remove
-    response.data._id = '3123';
-    response.data.email = '1001hz@';
-    response.data.firstName = 'John';
-    response.data.lastName = 'Hughes';
-    response.data.token = '123123';
+  setUserFromServerResponse(response): User {
 
     let _user = new User();
 
     // extract data from server response
-    _user.makeFromResponse(response.data);
+    _user.makeFromResponse(response);
 
     // add to store
     this.store.dispatch({ type: SET_USER, payload: _user });

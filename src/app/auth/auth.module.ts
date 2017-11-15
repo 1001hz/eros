@@ -7,8 +7,6 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-
-import { AuthService } from './../core/services/auth.service';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
@@ -26,7 +24,6 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     ResetPasswordComponent
   ],
   providers: [
-    AuthService
   ]
 })
 export class AuthModule { }

@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable } from '../../../../node_modules/rxjs/Rx.d';
+import { Observable } from 'rxjs/Rx';
+import { of } from 'rxjs/observable/of';
 import { User } from '../../shared/models/user.model';
 import {
   IResponse,
@@ -9,7 +10,7 @@ import {
   IResetPasswordRequest } from '../../shared/interfaces';
 import { ApiService } from './api.service';
 import { UserService } from './user.service';
-
+import { ToastService } from './toast.service';
 import { APP_CONFIG } from '../../app-config/app-config.module';
 
 @Injectable()
@@ -20,12 +21,13 @@ export class AuthService {
   constructor(
     private apiService: ApiService,
     private userService: UserService,
+    private toastService: ToastService,
     @Inject(APP_CONFIG) _config
     ) {
     this.config = _config;
   }
 
-  login(email: string, password: string): Observable<boolean> {
+  login(email: string, password: string): Observable<any> {
 
     let data: ILoginRequest = {
       email: email,
@@ -33,11 +35,15 @@ export class AuthService {
     };
 
     return this.apiService.makeRequest(this.config.apiRoutes.login, data)
-      .map( (response: IResponse) => {
-        let user: User = this.userService.setUserFromServerResponse(response);
+      .map( (serverResponse: Response) => {
+        let user: User = this.userService.setUserFromServerResponse(serverResponse);
         localStorage.setItem(this.config.tokenKey, user.token);
         return true;
-    });
+      })
+      .catch( (error) => {
+        this.toastService.onError(error);
+        return Observable.throw(error);
+      })
   }
 
   logout(): Observable<any> {

@@ -7,18 +7,42 @@ import { ToastService } from './toast.service';
 import { LoaderService } from './loader.service';
 
 import { APP_CONFIG } from '../../app-config/app-config.module';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Store } from '@ngrx/store';
+import { User } from '../../shared/models/user.model';
+
+
+interface AppState {
+  user: User;
+}
 
 @Injectable()
 export class ApiService {
 
   private config;
+  private headers: Headers;
+  private token;
 
   constructor(
     private loaderService: LoaderService,
     private toastService: ToastService,
-    @Inject(APP_CONFIG) _config
+    @Inject(APP_CONFIG) _config,
+    private store: Store<AppState>,
+    public http: Http
   ) {
+
     this.config = _config;
+
+
+    store.select('user').subscribe( (u:User) => {
+      this.token = u.token;
+    } );
+
+  }
+
+  makeHeaders() {
+    this.headers = new Headers({ 'Content-Type': 'application/json' });
+    this.headers.append('X-Auth-Token', this.token);
   }
 
   makeRequest(route, data?) {
@@ -30,79 +54,52 @@ export class ApiService {
             return this.httpGet(endpoint);
       case 'POST':
             return this.httpPost(endpoint, data);
+      case 'PATCH':
+        return this.httpPatch(endpoint, data);
+      case 'PUT':
+        return this.httpPut(endpoint, data);
     }
   }
 
-  httpGet(path: string): Observable<IResponse> {
+  httpGet(endpoint: string): Observable<Response> {
 
-    console.log('Hitting '+path);
+    this.makeHeaders();
+    let options = new RequestOptions({ headers: this.headers });
 
-    let response: IResponse = {
-      data: {}
-    };
-
-    let error = null;
-    this.loaderService.start();
-
-    if(error){
-      this.loaderService.stop();
-      this.toastService.onError(error);
-      return Observable.throw('Server error');
-    }else {
-      setTimeout( () => {
-        this.loaderService.stop();
-      }, 1000);
-      return Observable.of(response).delay(1000);
-    }
-
+    return this.http.get(endpoint, options)
+      .map((res:Response) => res.json())
+      .catch( error => Observable.throw(error.json().message || 'Server error'));
   }
 
-  httpPost(path: string, data: any): Observable<IResponse> {
+  httpPost(endpoint: string, data: any): Observable<IResponse> {
 
-    console.log("Hitting " + path + " with " + JSON.stringify(data));
+    this.makeHeaders();
+    let options = new RequestOptions({ headers: this.headers });
 
-    let response: IResponse = {
-      data: {}
-    };
-
-    let error = null;
-
-    this.loaderService.start();
-
-    if(error){
-      this.loaderService.stop();
-      this.toastService.onError(error);
-      return Observable.throw('Server error');
-    }else {
-      setTimeout( () => {
-        this.loaderService.stop();
-      }, 1000);
-      return Observable.of(response).delay(1000);
-    }
+    return this.http.post(endpoint, data, options)
+      .map((res:Response) => res.json())
+      .catch( error => Observable.throw(error.json().message || 'Server error'));
   }
 
-  httpPut(endpoint?, data?) {
+  httpPut(endpoint, data?) {
 
-    console.log("sending to " + endpoint + " with " + data);
+    this.makeHeaders();
+    let options = new RequestOptions({ headers: this.headers });
 
-    let response: IResponse = {
-      data: {}
-    };
+    return this.http.post(endpoint, data, options)
+      .map((res:Response) => res.json())
+      .catch( error => Observable.throw(error.json().message || 'Server error'));
+  }
 
-    let error = null;
 
-    this.loaderService.start();
+  httpPatch(endpoint, data?) {
 
-    if(error){
-      this.loaderService.stop();
-      this.toastService.onError(error);
-      return Observable.throw('Server error');
-    }else {
-      setTimeout( () => {
-        this.loaderService.stop();
-      }, 1000);
-      return Observable.of(response).delay(1000);
-    }
+    this.makeHeaders();
+    let options = new RequestOptions({ headers: this.headers });
+
+    return this.http.post(endpoint, data, options)
+      .map((res:Response) => res.json())
+      .catch( error => Observable.throw(error.json().message || 'Server error'));
   }
 
 }

@@ -3,7 +3,7 @@ import { IResponse } from '../../shared/interfaces/response.interface';
 import { Observable, BehaviorSubject, Subject } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 import { Wedding } from '../../shared/models/wedding.model';
-import { ADD_WEDDING, DELETE_WEDDING } from '../../shared/reducers/wedding.reducer';
+import { ADD_WEDDING, DELETE_WEDDING, UPDATE_WEDDING } from '../../shared/reducers/wedding.reducer';
 import { ApiService } from './api.service';
 import { APP_CONFIG } from '../../app-config/app-config.module';
 import { INewWeddingRequest } from '../../shared/interfaces/new-wedding-request.interface';
@@ -38,21 +38,9 @@ export class WeddingService {
     let _weddings:Array<Wedding> = [];
 
     return this.apiService.makeRequest(this.config.apiRoutes.getWeddings)
-      .map( (response: IResponse) => {
+      .map( (response) => {
 
-        //TODO: remove
-        response.data = [
-          { _id: '1',
-            date: '13/11/90',
-            name: 'My wedding'
-          },
-          { _id: '2',
-            date: '10/11/99',
-            name: 'Sean Wedding'
-          }
-        ];
-
-        response.data.map( (wedding) => {
+        response.weddings.map( (wedding) => {
           let _wedding = new Wedding();
           // extract data from server response
           _wedding.makeFromResponse(wedding);
@@ -89,6 +77,26 @@ export class WeddingService {
 
       wedding.makeFromResponse(response.data);
       this.store.dispatch({ type: ADD_WEDDING, payload: wedding });
+
+    });
+
+  }
+
+  update(weddingRequestData): Observable<boolean> {
+
+    return this.apiService.makeRequest(this.config.apiRoutes.updateWedding, weddingRequestData)
+      .map( (response) => {
+
+      //TODO remove
+      response.data._id = weddingRequestData._id;
+      response.data.date = weddingRequestData.date;
+      response.data.name = weddingRequestData.name;
+      let wedding = new Wedding();
+      wedding.makeFromResponse(response.data);
+
+      this.store.dispatch({ type: UPDATE_WEDDING, payload: wedding });
+
+      return true;
 
     });
 

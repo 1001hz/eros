@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
+import { ToastService } from '../../core/services/toast.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {
 
   }
@@ -33,14 +35,13 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authService.login(value.email, value.password).subscribe(
       (successFlag: boolean) => {
-        console.log(successFlag);
         this.router.navigate(['cms']);
+      },
+      (error) => {
+        this.loading = false;
       },
       () => {
 
-      },
-      () => {
-        this.loading = false;
       }
     );
   }

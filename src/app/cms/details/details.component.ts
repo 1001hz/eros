@@ -12,6 +12,7 @@ import { Observable } from 'rxjs/Rx';
 export class DetailsComponent implements OnInit {
 
   public wedding$: Observable<Wedding>;
+  public step = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +23,26 @@ export class DetailsComponent implements OnInit {
     this.route.params.subscribe( (params) => {
       this.wedding$ = this.weddingService.getWeddingById(params['weddingId']);
     });
+  }
+
+  onUpdateWedding(formData) {
+    this.weddingService.update(formData).subscribe( (successFlag) => {
+      if(successFlag){
+        this.nextStep();
+      }
+    });
+  }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  lastStep() {
+    this.step--;
   }
 
 }

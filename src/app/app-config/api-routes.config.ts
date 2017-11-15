@@ -26,5 +26,9 @@ export const ApiRoutes = {
   getWeddings: {
     method: 'GET',
     path: '/weddings'
+  },
+  updateWedding: {
+    method: 'PATCH',
+    path: '/weddings'
   }
 };

@@ -13,6 +13,7 @@ export class ToastService {
   }
 
   onError(message: string): void {
+    console.log(message);
     alert('Error Toast' + message);
   }
 

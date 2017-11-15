@@ -1,4 +1,65 @@
-<p>
-  details works!
-  Name: {{ (wedding$|async).name}}
-</p>
+
+<div>
+
+</div>
+
+<mat-accordion class="">
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Basic Details
+      </mat-panel-title>
+      <mat-panel-description>
+        Some basic info on the big day
+        <mat-icon>account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <app-edit-details [wedding]="wedding$|async" (onUpdateWedding)="onUpdateWedding($event)"></app-edit-details>
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Ceremony
+      </mat-panel-title>
+      <mat-panel-description>
+        Location, times, etc
+        <mat-icon>map</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    Comming soon
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="lastStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+    </mat-action-row>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Afters
+      </mat-panel-title>
+      <mat-panel-description>
+        Location, times, etc
+        <mat-icon>date_range</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    Comming soon
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="lastStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+    </mat-action-row>
+
+  </mat-expansion-panel>
+
+</mat-accordion>

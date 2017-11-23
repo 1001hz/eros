@@ -1,4 +1,4 @@
 export interface INewWeddingRequest {
   name: string,
-  date: string
+  date: number
 }

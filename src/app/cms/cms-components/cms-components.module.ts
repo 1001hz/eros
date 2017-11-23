@@ -6,6 +6,9 @@ import { RouterModule } from '@angular/router';
 import { AddWeddingComponent } from './add-wedding/add-wedding.component';
 import { WeddingListComponent } from './wedding-list/wedding-list.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
+import { DeleteWeddingDialogComponent } from './delete-wedding-dialog/delete-wedding-dialog.component';
+import { EditCeremonyComponent } from './edit-ceremony/edit-ceremony.component';
+import { EditAftersComponent } from './edit-afters/edit-afters.component';
 
 @NgModule({
   imports: [
@@ -15,7 +18,16 @@ import { EditDetailsComponent } from './edit-details/edit-details.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  exports:[AddWeddingComponent, WeddingListComponent, EditDetailsComponent],
-  declarations: [AddWeddingComponent, WeddingListComponent, EditDetailsComponent]
+  entryComponents: [
+    DeleteWeddingDialogComponent,
+  ],
+  exports:[
+    AddWeddingComponent,
+    WeddingListComponent,
+    EditDetailsComponent,
+    EditCeremonyComponent,
+    EditAftersComponent
+  ],
+  declarations: [AddWeddingComponent, WeddingListComponent, EditDetailsComponent, DeleteWeddingDialogComponent, EditCeremonyComponent, EditAftersComponent]
 })
 export class CmsComponentsModule { }

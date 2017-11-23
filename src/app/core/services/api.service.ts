@@ -45,19 +45,31 @@ export class ApiService {
     this.headers.append('X-Auth-Token', this.token);
   }
 
+  insertDataInUrl(endpoint, data) {
+    Object.keys(data).forEach(function(key) {
+      endpoint = endpoint.replace('{'+key+'}', data[key]);
+    });
+    return endpoint;
+  }
+
   makeRequest(route, data?) {
 
     let endpoint = this.config.apiEndpoint + route.path;
 
     switch(route.method){
       case 'GET':
-            return this.httpGet(endpoint);
+        if(data) {
+          endpoint = this.insertDataInUrl(endpoint, data);
+        }
+        return this.httpGet(endpoint);
       case 'POST':
             return this.httpPost(endpoint, data);
       case 'PATCH':
         return this.httpPatch(endpoint, data);
       case 'PUT':
         return this.httpPut(endpoint, data);
+      case 'DELETE':
+        return this.httpDelete(endpoint, data);
     }
   }
 
@@ -86,7 +98,7 @@ export class ApiService {
     this.makeHeaders();
     let options = new RequestOptions({ headers: this.headers });
 
-    return this.http.post(endpoint, data, options)
+    return this.http.put(endpoint, data, options)
       .map((res:Response) => res.json())
       .catch( error => Observable.throw(error.json().message || 'Server error'));
   }
@@ -97,7 +109,21 @@ export class ApiService {
     this.makeHeaders();
     let options = new RequestOptions({ headers: this.headers });
 
-    return this.http.post(endpoint, data, options)
+    return this.http.patch(endpoint, data, options)
+      .map((res:Response) => res.json())
+      .catch( error => Observable.throw(error.json().message || 'Server error'));
+  }
+
+  httpDelete(endpoint, data?) {
+
+    this.makeHeaders();
+    let options = new RequestOptions({
+      headers: this.headers
+    });
+
+    options.body = data;
+
+    return this.http.delete(endpoint, options)
       .map((res:Response) => res.json())
       .catch( error => Observable.throw(error.json().message || 'Server error'));
   }

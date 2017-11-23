@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="onUpdate(form.value)">
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Enter the venue name" value="{{wedding.aftersVenue}}" id="aftersVenue" [formControl]="form.controls['aftersVenue']">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Enter the venue location" value="{{wedding.aftersLocation}}" id="aftersLocation" [formControl]="form.controls['aftersLocation']">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Enter google maps embed link" value="{{wedding.aftersMap}}" id="aftersMap" [formControl]="form.controls['aftersMap']">
+    </mat-form-field>
+    <div *ngIf="wedding.aftersMap">
+      <iframe [src]="wedding.aftersMap | safe" width="100%" height="450" frameborder="0" style="border:0"></iframe>
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <textarea matTextareaAutosize
+                matAutosizeMinRows="2"
+                matAutosizeMaxRows="5"
+                matInput placeholder="Enter some information about the afters" value="{{wedding.aftersInfo}}" id="aftersInfo" [formControl]="form.controls['aftersInfo']"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Enter the afters time" value="{{wedding.aftersTime}}" id="aftersTime" [formControl]="form.controls['aftersTime']">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-raised-button color="primary" [disabled]="!form.valid || loading">Update</button>
+  </div>
+</form>

@@ -1,6 +1,6 @@
 
 <div>
-
+  <button mat-button color="warn" (click)="onRemoveWedding()">Delete</button>
 </div>
 
 <mat-accordion class="">
@@ -33,7 +33,7 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    Comming soon
+    <app-edit-ceremony [wedding]="wedding$|async" (onUpdateWedding)="onUpdateWedding($event)"></app-edit-ceremony>
 
     <mat-action-row>
       <button mat-button color="primary" (click)="lastStep()">Previous</button>
@@ -53,11 +53,10 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    Comming soon
+    <app-edit-afters [wedding]="wedding$|async" (onUpdateWedding)="onUpdateWedding($event)"></app-edit-afters>
 
     <mat-action-row>
       <button mat-button color="primary" (click)="lastStep()">Previous</button>
-      <button mat-button color="primary" (click)="nextStep()">Next</button>
     </mat-action-row>
 
   </mat-expansion-panel>

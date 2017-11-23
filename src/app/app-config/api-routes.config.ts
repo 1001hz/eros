@@ -27,8 +27,20 @@ export const ApiRoutes = {
     method: 'GET',
     path: '/weddings'
   },
+  addWedding: {
+    method: 'POST',
+    path: '/weddings'
+  },
   updateWedding: {
     method: 'PATCH',
     path: '/weddings'
+  },
+  removeWedding: {
+    method: 'DELETE',
+    path: '/weddings'
+  },
+  getGuests: {
+    method: 'GET',
+    path: '/weddings/{weddingId}/guests'
   }
 };

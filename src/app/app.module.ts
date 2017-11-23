@@ -10,6 +10,7 @@ import { AppConfigModule } from './app-config/app-config.module';
 import { StoreModule } from "@ngrx/store";
 import { userReducer } from './shared/reducers/user.reducer';
 import { weddingReducer } from './shared/reducers/wedding.reducer';
+import { guestReducer } from './shared/reducers/guest.reducer';
 
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
@@ -18,7 +19,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 let rootReducer = {
   user: userReducer,
-  weddings: weddingReducer
+  weddings: weddingReducer,
+  guests: guestReducer
 };
 
 @NgModule({

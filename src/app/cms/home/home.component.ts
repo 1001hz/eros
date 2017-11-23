@@ -25,6 +25,6 @@ export class HomeComponent implements OnInit {
       name: formData.name,
       date: formData.date
     };
-    this.weddingService.addNewWedding(weddingRequestData);
+    this.weddingService.addNewWedding(weddingRequestData).subscribe();
   }
 }

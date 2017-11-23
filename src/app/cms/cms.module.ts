@@ -5,6 +5,7 @@ import { CmsRoutingModule } from './cms-routing.module';
 import { CmsComponentsModule } from './cms-components/cms-components.module';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
+import { GuestlistComponent } from './guestlist/guestlist.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { DetailsComponent } from './details/details.component';
     SharedModule,
     CmsComponentsModule
   ],
-  declarations: [HomeComponent, DetailsComponent]
+  declarations: [HomeComponent, DetailsComponent, GuestlistComponent]
 })
 export class CmsModule { }

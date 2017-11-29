@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
-import { ToastService } from '../../core/services/toast.service';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ILoginRequest } from '../../shared/interfaces/login-request.interface';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router,
-    private toastService: ToastService
+    private authService: AuthService
   ) {
 
   }
@@ -32,18 +29,11 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(value: any) {
-    this.loading = true;
-    this.authService.login(value.email, value.password).subscribe(
-      (successFlag: boolean) => {
-        this.router.navigate(['cms']);
-      },
-      (error) => {
-        this.loading = false;
-      },
-      () => {
-
-      }
-    );
+    let loginRequest: ILoginRequest = {
+      email: value.email,
+      password: value.password
+    };
+    this.authService.login(loginRequest);
   }
 
 }

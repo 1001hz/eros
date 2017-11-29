@@ -11,6 +11,18 @@ import {
 import { UserService } from './user.service';
 import { APP_CONFIG } from '../../app-config/app-config.module';
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { LOGIN_SUCCESS } from '../../shared/reducers/user.reducer';
+import { AuthActions } from '../../shared/actions/auth.actions';
+
+interface IAuth {
+  loggingIn: boolean;
+  loginSuccess: boolean;
+}
+
+interface AppState {
+  auth: IAuth
+}
 
 @Injectable()
 export class AuthService {
@@ -18,6 +30,7 @@ export class AuthService {
   private config;
 
   constructor(
+    private store: Store<AppState>,
     private http: HttpClient,
     private userService: UserService,
     @Inject(APP_CONFIG) _config
@@ -25,28 +38,36 @@ export class AuthService {
     this.config = _config;
   }
 
-  login(email: string, password: string): Observable<any> {
 
-    let data: ILoginRequest = {
-      email: email,
-      password: password
-    };
+  login(loginRequest: ILoginRequest) {
 
-    return this.http.post<IUser>(this.config.apiRoutes.login.path, data)
-      .map( (user: IUser) => {
-        this.userService.setUser(user);
-        localStorage.setItem(this.config.tokenKey, user.token);
-        return true;
-      });
+    this.store.dispatch({
+      type: AuthActions.LOGIN_BEGIN,
+      payload: loginRequest
+    });
   }
 
-  logout(): Observable<any> {
-    return this.http.get(this.config.apiRoutes.logout.path)
-      .map( () => {
-        localStorage.removeItem(this.config.tokenKey);
-        this.userService.resetUser();
-      });
+
+  logout() {
+
+    this.store.dispatch({
+      type: AuthActions.LOGOUT_BEGIN
+    });
   }
+
+
+  setUser(user) {
+    localStorage.setItem(this.config.tokenKey, user.token);
+    this.userService.setUser(user);
+  }
+
+  resetUser() {
+    localStorage.removeItem(this.config.tokenKey);
+    this.userService.resetUser();
+  }
+
+
+
 
   tokenLogin(): Promise<any> {
 

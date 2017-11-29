@@ -1,6 +1,7 @@
 import { ActionReducer, Action } from '@ngrx/store';
 import { IUser } from '../models/user.interface';
 
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const SET_USER = 'SET_USER';
 export const RESET_USER = 'RESET_USER';
 export const UPDATE_USER = 'UPDATE_USER';
@@ -20,6 +21,7 @@ let initialState: IUser = {
 
 export function userReducer(state: IUser = initialState, action: CustomAction = null) {
   switch (action.type) {
+
     case SET_USER:
       return Object.assign({}, state, action.payload );
 

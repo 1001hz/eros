@@ -1,0 +1,15 @@
+export class AuthActions {
+  static LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+  static LOGIN_BEGIN = 'LOGIN_BEGIN';
+  static LOGIN_FINISHED = 'LOGIN_FINISHED';
+  static LOGIN_FAILED = 'LOGIN_FAILED';
+  static LOGOUT_BEGIN = 'LOGOUT_BEGIN';
+  static LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+  static LOGOUT_FAILED = 'LOGOUT_FAILED';
+  static LOGOUT_FINISHED = 'LOGOUT_FINISHED';
+  static USER_SET = 'USER_SET';
+  static USER_RESET = 'USER_RESET';
+}
+
+
+

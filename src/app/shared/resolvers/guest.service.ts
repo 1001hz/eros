@@ -4,12 +4,12 @@ import { WeddingService } from '../../core/services/wedding.service';
 import { Guest } from '../models/guest.model';
 
 @Injectable()
-export class GuestResolve implements Resolve<Promise<Array<Guest>>> {
+export class GuestResolve implements Resolve<any> {
 
   constructor(private weddingService: WeddingService) { }
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.weddingService.getAllGuests(route.paramMap.get('weddingId'));
+    return this.weddingService.fetchGuests((route.paramMap.get('weddingId'))).first();
   }
 
 }

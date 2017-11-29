@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private weddingService: WeddingService) { }
+    private weddingService: WeddingService) {}
 
   ngOnInit() {
     this.weddings = this.weddingService.weddings;

@@ -1,0 +1,40 @@
+@mixin clearfix {
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+}
+
+// aligns
+@mixin vertical-align() {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+// grid
+
+@mixin grid-wrap {
+  max-width: $max-width;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@mixin grid-row() {
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+}
+
+@mixin grid-item($num) {
+  width: calc((100% - #{$gutter-width} * 2) / #{$num});
+  margin-right: $gutter-width;
+  float: left;
+
+  &:nth-child(#{$num}n+#{$num}) {
+    margin-right: 0;
+    float: right;
+  }
+}

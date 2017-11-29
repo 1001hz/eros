@@ -2,7 +2,8 @@ import { NgModule, Optional, SkipSelf, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
+//import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NavComponent } from './nav/nav.component';
 
@@ -21,12 +22,14 @@ import { ResetPasswordGuard } from './guards/reset-password.guard';
 import { throwIfAlreadyLoaded } from './guards/module-import.guard';
 import { LoaderComponent } from './loader/loader.component';
 
+import { ApiInterceptor } from './interceptors/api.interceptor';
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     MaterialModule,
-    HttpModule
+    HttpClientModule
   ],
   exports: [
     NavComponent,
@@ -48,6 +51,11 @@ import { LoaderComponent } from './loader/loader.component';
       useFactory: onAppInit,
       multi: true,
       deps: [ AuthService ]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true,
     }
   ]
 })

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+//import { HttpClientModule } from '@angular/common/http';
 import { SharedModule} from './shared/shared.module'; // components, pipes, etc used in many templates, Material2 module
 import { CoreModule} from './core/core.module'; // singletons, spinners, modals, man nav, anything that goes in the app template
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +34,7 @@ let rootReducer = {
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
+    //HttpClientModule,
     SharedModule,
     CoreModule,
     AppConfigModule,

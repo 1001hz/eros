@@ -1,0 +1,20 @@
+.banner {
+
+  &__content {
+    @include vertical-align();
+  }
+
+  &__heading {
+    margin-top: 0;
+    color: $white;
+    text-align: center;
+    font-family: $font-heading;
+    font-size: $font-x-large;
+  }
+
+  &__date {
+    color: $white;
+    text-align: center;
+    font-family: $font-heading;
+  }
+}

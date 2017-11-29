@@ -1,5 +1,5 @@
 import { ActionReducer, Action } from '@ngrx/store';
-import { User } from '../models/user.model';
+import { IUser } from '../models/user.interface';
 
 export const SET_USER = 'SET_USER';
 export const RESET_USER = 'RESET_USER';
@@ -10,16 +10,24 @@ export interface CustomAction extends Action {
   payload?: any;
 }
 
-export function userReducer(state: User = new User(), action: CustomAction = null) {
+let initialState: IUser = {
+  _id: '',
+  email: '',
+  firstName: '',
+  lastName: '',
+  token: ''
+};
+
+export function userReducer(state: IUser = initialState, action: CustomAction = null) {
   switch (action.type) {
     case SET_USER:
-      return Object.assign(new User(), state, action.payload );
+      return Object.assign({}, state, action.payload );
 
     case RESET_USER:
-      return new User();
+      return initialState;
 
     case UPDATE_USER:
-      return Object.assign(new User(), state, action.payload );
+      return Object.assign({}, state, action.payload );
 
     default:
       return state;

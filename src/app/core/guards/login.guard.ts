@@ -13,8 +13,9 @@ export class LoginGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.userService.getUser().map( (u) => {
+    return this.userService.user.map( (u) => {
       return u._id ? true : false;
     }).first();
+
   }
 }

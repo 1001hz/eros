@@ -7,13 +7,14 @@ import { ToastService } from './toast.service';
 import { LoaderService } from './loader.service';
 
 import { APP_CONFIG } from '../../app-config/app-config.module';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import { User } from '../../shared/models/user.model';
+import { IUser } from '../../shared/models/user.interface';
 
 
 interface AppState {
-  user: User;
+  user: IUser;
 }
 
 @Injectable()
@@ -28,21 +29,21 @@ export class ApiService {
     private toastService: ToastService,
     @Inject(APP_CONFIG) _config,
     private store: Store<AppState>,
-    public http: Http
+    private http: HttpClient
   ) {
 
     this.config = _config;
 
 
-    store.select('user').subscribe( (u:User) => {
+    store.select('user').subscribe( (u:IUser) => {
       this.token = u.token;
-    } );
+    });
 
   }
 
   makeHeaders() {
-    this.headers = new Headers({ 'Content-Type': 'application/json' });
-    this.headers.append('X-Auth-Token', this.token);
+    //this.headers = new Headers({ 'Content-Type': 'application/json' });
+    //this.headers.append('X-Auth-Token', this.token);
   }
 
   insertDataInUrl(endpoint, data) {
@@ -54,7 +55,8 @@ export class ApiService {
 
   makeRequest(route, data?) {
 
-    let endpoint = this.config.apiEndpoint + route.path;
+    //let endpoint = this.config.apiEndpoint + route.path;
+    let endpoint = route.path;
 
     switch(route.method){
       case 'GET':
@@ -73,59 +75,31 @@ export class ApiService {
     }
   }
 
-  httpGet(endpoint: string): Observable<Response> {
-
-    this.makeHeaders();
-    let options = new RequestOptions({ headers: this.headers });
-
-    return this.http.get(endpoint, options)
-      .map((res:Response) => res.json())
-      .catch( error => Observable.throw(error.json().message || 'Server error'));
+  httpGet(endpoint: string): Observable<any> {
+    return this.http.get(endpoint);
   }
 
-  httpPost(endpoint: string, data: any): Observable<IResponse> {
-
-    this.makeHeaders();
-    let options = new RequestOptions({ headers: this.headers });
-
-    return this.http.post(endpoint, data, options)
-      .map((res:Response) => res.json())
-      .catch( error => Observable.throw(error.json().message || 'Server error'));
+  httpPost(endpoint: string, data: any): Observable<any> {
+    return this.http.post(endpoint, data);
   }
 
   httpPut(endpoint, data?) {
-
-    this.makeHeaders();
-    let options = new RequestOptions({ headers: this.headers });
-
-    return this.http.put(endpoint, data, options)
-      .map((res:Response) => res.json())
-      .catch( error => Observable.throw(error.json().message || 'Server error'));
+    return this.http.put(endpoint, data);
   }
 
 
   httpPatch(endpoint, data?) {
-
-    this.makeHeaders();
-    let options = new RequestOptions({ headers: this.headers });
-
-    return this.http.patch(endpoint, data, options)
-      .map((res:Response) => res.json())
-      .catch( error => Observable.throw(error.json().message || 'Server error'));
+    return this.http.patch(endpoint, data);
   }
 
   httpDelete(endpoint, data?) {
 
-    this.makeHeaders();
-    let options = new RequestOptions({
-      headers: this.headers
-    });
+    //this.makeHeaders();
+    //let options = new RequestOptions({ headers: this.headers });
+    //
+    //options.body = data;
 
-    options.body = data;
-
-    return this.http.delete(endpoint, options)
-      .map((res:Response) => res.json())
-      .catch( error => Observable.throw(error.json().message || 'Server error'));
+    return this.http.delete(endpoint);
   }
 
 }

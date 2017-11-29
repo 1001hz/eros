@@ -1,15 +1,17 @@
 <div>
   <app-loader></app-loader>
 </div>
-<div>
+
+<nav class="nav">
   <mat-toolbar color="primary">
     <span><a routerLink="/"><mat-icon>mood</mat-icon></a></span>
 
     <span id="app-name">EROS</span>
-
     <app-nav></app-nav>
+
   </mat-toolbar>
-</div>
+</nav>
 
+<main class="main">
 <router-outlet></router-outlet>
-
+</main>

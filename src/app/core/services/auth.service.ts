@@ -1,17 +1,16 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { of } from 'rxjs/observable/of';
-import { User } from '../../shared/models/user.model';
+import { IUser } from '../../shared/models/user.interface';
 import {
   IResponse,
   ILoginRequest,
   ISignUpRequest,
   IResetPasswordLinkRequest,
   IResetPasswordRequest } from '../../shared/interfaces';
-import { ApiService } from './api.service';
 import { UserService } from './user.service';
-import { ToastService } from './toast.service';
 import { APP_CONFIG } from '../../app-config/app-config.module';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
@@ -19,9 +18,8 @@ export class AuthService {
   private config;
 
   constructor(
-    private apiService: ApiService,
+    private http: HttpClient,
     private userService: UserService,
-    private toastService: ToastService,
     @Inject(APP_CONFIG) _config
     ) {
     this.config = _config;
@@ -34,20 +32,16 @@ export class AuthService {
       password: password
     };
 
-    return this.apiService.makeRequest(this.config.apiRoutes.login, data)
-      .map( (serverResponse: Response) => {
-        let user: User = this.userService.setUserFromServerResponse(serverResponse);
+    return this.http.post<IUser>(this.config.apiRoutes.login.path, data)
+      .map( (user: IUser) => {
+        this.userService.setUser(user);
         localStorage.setItem(this.config.tokenKey, user.token);
         return true;
-      })
-      .catch( (error) => {
-        this.toastService.onError(error);
-        return Observable.throw(error);
-      })
+      });
   }
 
   logout(): Observable<any> {
-    return this.apiService.makeRequest(this.config.apiRoutes.logout)
+    return this.http.get(this.config.apiRoutes.logout.path)
       .map( () => {
         localStorage.removeItem(this.config.tokenKey);
         this.userService.resetUser();
@@ -64,10 +58,10 @@ export class AuthService {
         token: token
       };
 
-      return this.apiService.makeRequest(this.config.apiRoutes.tokenLogin, data)
+      return this.http.post<IUser>(this.config.apiRoutes.tokenLogin.path, data)
         .toPromise()
-        .then((response: IResponse) => {
-          let user: User = this.userService.setUserFromServerResponse(response);
+        .then((user: IUser) => {
+          this.userService.setUser(user);
           localStorage.setItem(this.config.tokenKey, user.token);
         })
         .catch((err: any) => Promise.resolve());
@@ -84,9 +78,9 @@ export class AuthService {
       password: password
     };
 
-    return this.apiService.makeRequest(this.config.apiRoutes.signUp, data)
-      .map( (response: IResponse) => {
-        let user: User = this.userService.setUserFromServerResponse(response);
+    return this.http.post<IUser>(this.config.apiRoutes.signUp.path, data)
+      .map( (user: IUser) => {
+        this.userService.setUser(user);
         localStorage.setItem(this.config.tokenKey, user.token);
         return true;
       });
@@ -98,7 +92,7 @@ export class AuthService {
       email: email
     };
 
-    return this.apiService.makeRequest(this.config.apiRoutes.resetPasswordLink, data)
+    return this.http.post(this.config.apiRoutes.resetPasswordLink.path, data)
       .map( ()=> {
         return true;
       });
@@ -111,7 +105,7 @@ export class AuthService {
       token: token
     };
 
-    return this.apiService.makeRequest(this.config.apiRoutes.resetPassword, data)
+    return this.http.post(this.config.apiRoutes.resetPassword.path, data)
       .map( ()=> {
         return true;
       })

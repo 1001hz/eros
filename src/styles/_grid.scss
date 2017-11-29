@@ -1,0 +1,20 @@
+.grid-wrap {
+  @include grid-wrap();
+}
+
+.grid-row {
+  @include grid-row();
+}
+
+.grid-item-3 {
+  @include grid-item(3);
+}
+
+.grid-item-2 {
+  @include grid-item(2);
+}
+
+//.grid-item:nth-child(3n+3) {
+//  margin-right: 0;
+//  float: right;
+//}

@@ -37,6 +37,16 @@ export class WeddingService {
     });
   }
 
+  checkInvitation(weddingId, invitationId): Observable<boolean> {
+    return this.apiService.makeRequest(this.config.apiRoutes.validateInvitationCode, {weddingId: weddingId, invitationId: invitationId})
+      .map( result => {
+        if(result.valid){
+          return true;
+        }
+        return false;
+      });
+  }
+
   /**
    * Get all weddings from the server, put in the local store
    */

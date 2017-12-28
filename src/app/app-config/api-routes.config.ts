@@ -13,7 +13,11 @@ export const ApiRoutes = {
   },
   signUp: {
     method: 'POST',
-    path: '/signup'
+    path: '/user'
+  },
+  userUpdate: {
+    method: 'PATCH',
+    path: '/user'
   },
   resetPasswordLink: {
     method: 'POST',
@@ -42,5 +46,9 @@ export const ApiRoutes = {
   getGuests: {
     method: 'GET',
     path: '/weddings/{weddingId}/guests'
+  },
+  validateInvitationCode: {
+    method: 'GET',
+    path: '/weddings/{weddingId}/invitation/{invitationId}'
   }
 };

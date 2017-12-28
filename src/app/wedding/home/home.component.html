@@ -1,8 +1,15 @@
 <section class="section banner">
-  <div class="section__image banner__image" style="background-image:url(http://localhost:4200/assets/images/bg-home.jpg)">
+  <div class="section__image banner__image" style="background-image:url(http://localhost:4200/assets/images/flowers.jpg)">
     <div class="section__content section__content--pad banner__content">
-      <h1 class="banner__heading">John & Dee's Big Fat Wedding</h1>
-      <p class="banner__date">01/09/2018</p>
+      <h1 class="banner__heading banner__heading--border">Deirdre <br /><span class="banner__heading--alt">&</span> <br /> John</h1>
+      <p class="banner__icon">
+        <mat-icon>favorite_border</mat-icon>
+      </p>
+      <p class="banner__subtext">Saturday, September 1st 2018</p>
+
+      <p class="section__cta">
+        <button mat-raised-button color="primary" (click)="onGoToRsvp()">RSVP</button>
+      </p>
     </div>
   </div>
 </section>

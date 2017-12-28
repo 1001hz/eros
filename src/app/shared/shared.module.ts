@@ -4,6 +4,8 @@ import { MaterialModule } from '../material/material.module';
 import { WeddingResolve } from './resolvers/wedding.service';
 import { GuestResolve } from './resolvers/guest.service';
 import { SafePipe } from './pipes/safe.pipe';
+import { AuthActions } from './actions/auth.actions';
+import { UserActions } from './actions/user.actions';
 
 @NgModule({
   imports: [
@@ -17,7 +19,9 @@ import { SafePipe } from './pipes/safe.pipe';
   declarations: [SafePipe],
   providers: [
     WeddingResolve,
-    GuestResolve
+    GuestResolve,
+    AuthActions,
+    UserActions
   ]
 })
 export class SharedModule { }

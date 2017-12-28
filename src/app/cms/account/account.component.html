@@ -1,0 +1,9 @@
+<section class="section section--app">
+  <div class="section__content section__content--pad">
+
+    <h2 class="account__heading">Account</h2>
+
+    <app-edit-account [accountState]="accountState | async" [user]="user | async" (onUpdateUser)="onUpdateUser($event)"></app-edit-account>
+
+  </div>
+</section>

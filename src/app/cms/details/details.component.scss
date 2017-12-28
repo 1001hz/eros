@@ -1,0 +1,26 @@
+@import "../../../styles/variables";
+@import "../../../styles/fonts";
+
+.details {
+
+  &__heading {
+    color: $black;
+    font-family: $font-heading;
+  }
+
+  &__panel-title {
+    font-weight: bold;
+    color: $black;
+  }
+
+  &__preview {
+    text-align: right;
+    padding: $padding-small;
+    color: $pink;
+
+    a {
+      color: $pink;
+      text-decoration: none;
+    }
+  }
+}

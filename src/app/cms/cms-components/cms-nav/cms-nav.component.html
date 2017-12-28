@@ -1,0 +1,10 @@
+<button mat-icon-button [mat-menu-trigger-for]="menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu x-position="before" #menu="matMenu">
+  <div>
+    <button [routerLink]="['account']" routerLinkActive="active" mat-menu-item>Account</button>
+    <button [routerLink]="['/cms']" routerLinkActive="active" mat-menu-item>Dashboard</button>
+    <button (click)="onLogout()" mat-menu-item>Logout</button>
+  </div>
+</mat-menu>

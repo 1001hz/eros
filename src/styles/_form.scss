@@ -1,0 +1,19 @@
+.form {
+
+  text-align: center;
+
+  &__item {
+    padding: $padding-small;
+    &--left {
+      text-align: left;
+    }
+  }
+
+  &__cta-link {
+    text-align: center;
+  }
+
+  label {
+    color: $black;
+  }
+}

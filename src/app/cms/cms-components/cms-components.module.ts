@@ -9,6 +9,8 @@ import { EditDetailsComponent } from './edit-details/edit-details.component';
 import { DeleteWeddingDialogComponent } from './delete-wedding-dialog/delete-wedding-dialog.component';
 import { EditCeremonyComponent } from './edit-ceremony/edit-ceremony.component';
 import { EditAftersComponent } from './edit-afters/edit-afters.component';
+import { EditAccountComponent } from './edit-account/edit-account.component';
+import { CmsNavComponent } from './cms-nav/cms-nav.component';
 
 @NgModule({
   imports: [
@@ -26,8 +28,19 @@ import { EditAftersComponent } from './edit-afters/edit-afters.component';
     WeddingListComponent,
     EditDetailsComponent,
     EditCeremonyComponent,
-    EditAftersComponent
+    EditAftersComponent,
+    EditAccountComponent,
+    CmsNavComponent
   ],
-  declarations: [AddWeddingComponent, WeddingListComponent, EditDetailsComponent, DeleteWeddingDialogComponent, EditCeremonyComponent, EditAftersComponent]
+  declarations: [
+    AddWeddingComponent,
+    WeddingListComponent,
+    EditDetailsComponent,
+    DeleteWeddingDialogComponent,
+    EditCeremonyComponent,
+    EditAftersComponent,
+    EditAccountComponent,
+    CmsNavComponent
+  ]
 })
 export class CmsComponentsModule { }

@@ -9,10 +9,12 @@ export class LoaderService {
   constructor() { }
 
   start(): void {
+    console.log("Start");
     this.loading.next(true);
   }
 
   stop(): void {
+    console.log("Stop");
     this.loading.next(false);
   }
 

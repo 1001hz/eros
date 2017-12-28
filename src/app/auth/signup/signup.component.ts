@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
-import { Router } from '@angular/router';
+import { ISignUpRequest } from '../../shared/interfaces/signup-request.interface';
 
 @Component({
   selector: 'app-signup',
@@ -15,13 +15,11 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
+    private authService: AuthService
   ) {
   }
 
   ngOnInit() {
-    this.loading = false;
     this.signUpForm = this.fb.group({
       'email': ['', [Validators.required, Validators.email]],
       'password': ['', Validators.required],
@@ -30,18 +28,11 @@ export class SignupComponent implements OnInit {
   }
 
   onSignUp(value: any) {
-    this.loading = true;
-    this.authService.signup(value.email, value.password).subscribe(
-      (successFlag) => {
-        this.router.navigate(['cms']);
-      },
-      () => {
-
-      },
-      () => {
-        this.loading = false;
-      }
-    );
+    let signupRequest: ISignUpRequest = {
+      email: value.email,
+      password: value.password
+    };
+    this.authService.signup(signupRequest);
   }
 
 }

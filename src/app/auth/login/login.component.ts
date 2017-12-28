@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ILoginRequest } from '../../shared/interfaces/login-request.interface';
+import { Store } from '@ngrx/store';
+import { IAuthState } from '../../shared/state/auth.state';
+
+interface AuthState {
+  auth: IAuthState
+}
 
 @Component({
   selector: 'app-login',
@@ -12,12 +18,14 @@ export class LoginComponent implements OnInit {
 
   public loading: boolean;
   public loginForm: FormGroup;
+  private authState$;
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<AuthState>
   ) {
-
+    this.authState$ = this.store.select('auth');
   }
 
   ngOnInit() {

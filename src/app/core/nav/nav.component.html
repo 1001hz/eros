@@ -2,15 +2,8 @@
   <mat-icon>more_vert</mat-icon>
 </button>
 <mat-menu x-position="before" #menu="matMenu">
-  <div *ngIf="(user|async)._id">
-    <button mat-menu-item>
-      Hi {{ (user|async).firstName }}
-    </button>
-    <button [routerLink]="['cms']" routerLinkActive="active" mat-menu-item>Dashboard</button>
-    <button (click)="onLogout()" mat-menu-item>Logout</button>
-  </div>
 
-  <div *ngIf="!(user|async)._id">
+  <div>
     <button [routerLink]="['auth', 'login']" routerLinkActive="active" mat-menu-item>Login</button>
     <button [routerLink]="['auth', 'signup']" routerLinkActive="active" mat-menu-item>Signup</button>
   </div>

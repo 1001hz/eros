@@ -1,5 +1,17 @@
 .nav {
   position: absolute;
   width: 100%;
-  opacity: 0.6;
+  //opacity: 0.6;
+  height: $nav-height;
+
+  &__title {
+    font-weight: bold;
+    font-family: $font-heading;
+    font-size: $font-small;
+
+    a {
+      color: $white;
+      text-decoration: none;
+    }
+  }
 }

@@ -4,17 +4,45 @@
     @include vertical-align();
   }
 
+  &__icon {
+    @include horizontal-align();
+    color: $pink;
+    max-width: 30px;
+  }
   &__heading {
     margin-top: 0;
-    color: $white;
+    color: $black;
+    text-transform: uppercase;
+    font-weight: lighter;
     text-align: center;
     font-family: $font-heading;
     font-size: $font-x-large;
+    padding: 23px;
+    max-width: 300px;
+    @include horizontal-align();
+
+    &--border {
+      border-top: solid 3px $black;
+      border-bottom: solid 3px $black;
+    }
+
+    &--alt {
+      font-size: $font-medium;
+      display: inline-block;
+      padding-bottom: 18px;
+    }
   }
 
   &__date {
     color: $white;
     text-align: center;
     font-family: $font-heading;
+  }
+
+  &__subtext {
+    color: $black;
+    text-align: center;
+    font-family: $font-heading;
+    font-weight: bold;
   }
 }

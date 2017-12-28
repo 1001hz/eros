@@ -3,7 +3,7 @@ import { Action } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { AuthService } from '../../core/services/auth.service';
+import { UserService } from '../../core/services/user.service';
 import { Router } from '@angular/router';
 import { CustomAction } from '../interfaces/custom-action.interface';
 import { AuthActions } from '../actions/auth.actions';
@@ -19,46 +19,38 @@ export class AuthEffects {
     .ofType(AuthActions.LOGIN_BEGIN)
     .switchMap( (action: CustomAction) => {
       return this.http.post<IUser>(this.config.apiRoutes.login.path, action.payload)
-        .switchMap( (user) => {
-          return Observable.of({type: AuthActions.LOGIN_SUCCESS, payload: user});
+        .switchMap( (user: IUser) => {
+          return Observable.of(this.authActions.loginSuccess(user));
       });
     })
-    .catch(() => of({ type: AuthActions.LOGIN_FAILED }));
+    .catch(() => of(this.authActions.loginFailed()));
 
 
   @Effect() loginSuccess$: Observable<Action> = this.actions$
     .ofType(AuthActions.LOGIN_SUCCESS)
     .switchMap( (action: CustomAction) => {
 
-      var user = action.payload;
+      // set user
+      this.userService.setUser(action.payload);
 
-      // set the user
-      this.authService.setUser(user);
-
-      return Observable.of({type: AuthActions.USER_SET});
-    }
-  );
-
-  @Effect() userSet$: Observable<Action> = this.actions$
-    .ofType(AuthActions.USER_SET)
-    .switchMap( () => {
-
-      // redirect after user is set
+      // redirect
       this.router.navigate(['cms']);
 
-      return Observable.of({type: AuthActions.LOGIN_FINISHED});
-    }
-  );
+      return Observable.of(this.authActions.loginFinished());
+    });
+
+
+
 
   @Effect() logoutBegin$ = this.actions$
     .ofType(AuthActions.LOGOUT_BEGIN)
     .switchMap( (action: CustomAction) => {
       return this.http.get(this.config.apiRoutes.logout.path)
         .switchMap( () => {
-          return Observable.of({type: AuthActions.LOGOUT_SUCCESS});
+          return Observable.of(this.authActions.logoutSuccess());
         });
     })
-    .catch(() => of({ type: AuthActions.LOGOUT_FAILED }));
+    .catch(() => of(this.authActions.logoutFailed()));
 
 
   @Effect() logoutSuccess$: Observable<Action> = this.actions$
@@ -66,29 +58,47 @@ export class AuthEffects {
     .switchMap( (action: CustomAction) => {
 
       // set the user
-      this.authService.resetUser();
-
-      return Observable.of({type: AuthActions.USER_RESET});
-    }
-  );
-
-  @Effect() userReset$: Observable<Action> = this.actions$
-    .ofType(AuthActions.USER_RESET)
-    .switchMap( () => {
+      this.userService.resetUser();
 
       // redirect to login after user is reset
       this.router.navigate(['auth','login']);
 
-      return Observable.of({type: AuthActions.LOGOUT_FINISHED});
+      return Observable.of(this.authActions.logoutFinished());
     }
   );
+
+  @Effect() signupBegin$ = this.actions$
+    .ofType(AuthActions.SIGNUP_BEGIN)
+    .switchMap( (action: CustomAction) => {
+      return this.http.post<IUser>(this.config.apiRoutes.signUp.path, action.payload)
+        .switchMap( (user: IUser) => {
+          return Observable.of(this.authActions.signupSuccess(user));
+        });
+    })
+    .catch(() => of(this.authActions.signupFailed()));
+
+
+  @Effect() signupSuccess$ = this.actions$
+    .ofType(AuthActions.SIGNUP_SUCCESS)
+    .switchMap( (action: CustomAction) => {
+
+      // set user
+      this.userService.setUser(action.payload);
+
+      // redirect
+      this.router.navigate(['cms']);
+
+      return Observable.of(this.authActions.signupFinished());
+    });
+
 
   private config;
 
   constructor(
+    private authActions: AuthActions,
     @Inject(APP_CONFIG) _config,
     private http: HttpClient,
-    private authService: AuthService,
+    private userService: UserService,
     private router: Router,
     private actions$: Actions)
   {

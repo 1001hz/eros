@@ -1,3 +1,26 @@
-<p>
-  landing works!
-</p>
+<section class="section banner">
+  <div class="section__image banner__image" style="background-image:url(http://localhost:4200/assets/images/flowers.jpg)">
+    <div class="section__content section__content--pad banner__content">
+      <h1 class="banner__heading banner__heading--border">Welcome <br /><span class="banner__heading--alt">to your</span> <br />wedding</h1>
+      <p class="banner__icon"><mat-icon>favorite</mat-icon>
+      </p>
+      <p class="banner__subtext">It's kind of a big deal</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="section__content section__content--pad">
+    <h1 class="section__heading">Get your wedding online</h1>
+    <p class="section__text">
+      Lorem IPsum
+    </p>
+    <p class="section__text">
+      There are millions of songs on Spotify. Play your favorites, discover new tracks, and build the perfect collection.
+    </p>
+    <p class="section__cta">
+      <button mat-raised-button color="primary" [routerLink]="['auth', 'signup']" routerLinkActive="active">Signup</button>
+    </p>
+  </div>
+</section>

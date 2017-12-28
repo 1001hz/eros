@@ -1,0 +1,9 @@
+<button mat-icon-button [mat-menu-trigger-for]="menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu x-position="before" #menu="matMenu">
+  <div>
+    <button [routerLink]="['']" routerLinkActive="active" mat-menu-item>Info</button>
+    <button [routerLink]="['rsvp']" routerLinkActive="active" mat-menu-item>RSVP</button>
+  </div>
+</mat-menu>

@@ -12,16 +12,11 @@ import { UserService } from './user.service';
 import { APP_CONFIG } from '../../app-config/app-config.module';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import { LOGIN_SUCCESS } from '../../shared/reducers/user.reducer';
 import { AuthActions } from '../../shared/actions/auth.actions';
 
-interface IAuth {
-  loggingIn: boolean;
-  loginSuccess: boolean;
-}
 
 interface AppState {
-  auth: IAuth
+  user: IUser
 }
 
 @Injectable()
@@ -30,6 +25,7 @@ export class AuthService {
   private config;
 
   constructor(
+    private authActions: AuthActions,
     private store: Store<AppState>,
     private http: HttpClient,
     private userService: UserService,
@@ -40,34 +36,13 @@ export class AuthService {
 
 
   login(loginRequest: ILoginRequest) {
-
-    this.store.dispatch({
-      type: AuthActions.LOGIN_BEGIN,
-      payload: loginRequest
-    });
+    this.store.dispatch(this.authActions.loginBegin(loginRequest));
   }
 
 
   logout() {
-
-    this.store.dispatch({
-      type: AuthActions.LOGOUT_BEGIN
-    });
+    this.store.dispatch(this.authActions.logoutBegin());
   }
-
-
-  setUser(user) {
-    localStorage.setItem(this.config.tokenKey, user.token);
-    this.userService.setUser(user);
-  }
-
-  resetUser() {
-    localStorage.removeItem(this.config.tokenKey);
-    this.userService.resetUser();
-  }
-
-
-
 
   tokenLogin(): Promise<any> {
 
@@ -92,19 +67,8 @@ export class AuthService {
     }
   }
 
-  signup(email: string, password: string): Observable<boolean> {
-
-    let data: ISignUpRequest = {
-      email: email,
-      password: password
-    };
-
-    return this.http.post<IUser>(this.config.apiRoutes.signUp.path, data)
-      .map( (user: IUser) => {
-        this.userService.setUser(user);
-        localStorage.setItem(this.config.tokenKey, user.token);
-        return true;
-      });
+  signup(signUpRequest: ISignUpRequest) {
+    this.store.dispatch(this.authActions.signupBegin(signUpRequest));
   }
 
   resetPasswordLink(email: string): Observable<boolean> {

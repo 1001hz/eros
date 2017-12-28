@@ -6,6 +6,8 @@ import { CmsComponentsModule } from './cms-components/cms-components.module';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { GuestlistComponent } from './guestlist/guestlist.component';
+import { AccountComponent } from './account/account.component';
+import { CmsComponent } from './cms.component';
 
 @NgModule({
   imports: [
@@ -14,6 +16,6 @@ import { GuestlistComponent } from './guestlist/guestlist.component';
     SharedModule,
     CmsComponentsModule
   ],
-  declarations: [HomeComponent, DetailsComponent, GuestlistComponent]
+  declarations: [CmsComponent, HomeComponent, DetailsComponent, GuestlistComponent, AccountComponent]
 })
 export class CmsModule { }

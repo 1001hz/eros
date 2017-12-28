@@ -1,0 +1,25 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onUpdate(form.value)">
+
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Email" value="{{user.email}}" id="email" disabled>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="First name" value="{{user.fname}}" id="fname" [formControl]="form.controls['fname']">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Last name" value="{{user.lname}}" id="lname" [formControl]="form.controls['lname']">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-raised-button color="primary" [disabled]="!form.valid || accountState.updatingAccount">Update</button>
+  </div>
+
+</form>

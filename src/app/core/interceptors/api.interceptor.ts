@@ -1,7 +1,8 @@
 import {Injectable, Inject} from '@angular/core';
-import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse} from '@angular/common/http';
+import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse} from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { UserService } from '../services/user.service';
+import { LoaderService } from '../services/loader.service';
 import { APP_CONFIG } from '../../app-config/app-config.module';
 
 @Injectable()
@@ -12,7 +13,8 @@ export class ApiInterceptor implements HttpInterceptor {
 
   constructor(
     @Inject(APP_CONFIG) _config,
-    private userService: UserService
+    private userService: UserService,
+    private loaderService: LoaderService
   ) {
     this.config = _config;
     userService.user.subscribe(_user => this.authToken = _user.token);

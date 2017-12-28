@@ -9,13 +9,24 @@
 
   &__heading {
     text-align: center;
-    color: $black;
-    font-family: $font-heading;
     margin-top: $text-buffer;
 
     &--light {
       color: $white;
     }
+  }
+
+  &__sub-heading {
+    text-align: center;
+  }
+
+  &__drawer-cta {
+    float: right;
+  }
+
+  &__drawer-back {
+    font-size: 37px;
+    color: $pink;
   }
 
   &__text {
@@ -31,7 +42,16 @@
     @include grid-wrap();
 
     &--pad {
-      padding: 0 $gutter-width;
+      padding: $gutter-width;
     }
+  }
+
+  &__cta {
+    margin: $gutter-width;
+    text-align: center;
+  }
+
+  &--app {
+    padding-top: $nav-height;
   }
 }

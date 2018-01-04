@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiEndpoint: '//localhost:8000/api/v1'
+  apiEndpoint: '//weddingelf.herokuapp.com/api/v1'
 };

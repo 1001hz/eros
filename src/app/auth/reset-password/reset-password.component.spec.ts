@@ -3,7 +3,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
-import { Observable, BehaviorSubject } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AuthServiceStub } from '../../core/services/auth.service.stub';
 
 import { ResetPasswordComponent } from './reset-password.component';

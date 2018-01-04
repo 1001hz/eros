@@ -1,15 +1,24 @@
 $max-width: 800px;
 $gutter-width: 20px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
 
 // colors
 $white: #ffffff;
 $black: #333333;
 $pink: #ad1457;
+$primary: $pink;
 
 // sizes
 $padding-small: 15px;
+$padding-medium: 24px;
+$padding-large: 48px;
+
 $font-x-large: 45px;
+$font-large: 34px;
 $font-medium: 22px;
 $font-small: 16px;
 $text-buffer: 40px;
 $nav-height: 56px;
+
+$duration: 0.3s;

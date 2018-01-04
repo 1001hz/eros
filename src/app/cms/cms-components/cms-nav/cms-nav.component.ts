@@ -12,4 +12,7 @@ export class CmsNavComponent implements OnInit {
   ngOnInit() {
   }
 
+  onLogout() {
+    //TODO: implement logout
+  }
 }

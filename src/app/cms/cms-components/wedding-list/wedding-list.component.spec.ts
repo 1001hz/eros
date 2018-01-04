@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { WeddingService } from '../../../core/services/wedding.service';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { WeddingServiceStub } from '../../../core/services/wedding.service.stub';
 
 import { WeddingListComponent } from './wedding-list.component';

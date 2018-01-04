@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   public loading: boolean;
   public loginForm: FormGroup;
-  private authState$;
+  public authState$;
 
   constructor(
     private fb: FormBuilder,

@@ -7,9 +7,12 @@
 }
 
 // aligns
-@mixin vertical-align() {
+@mixin vertical-align($offset: 0) {
   position: relative;
   top: 50%;
+  @if $offset {
+    top: calc(50% + #{$offset});
+  }
   transform: translateY(-50%);
 }
 @mixin horizontal-align() {
@@ -17,6 +20,16 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+//misc
+@mixin stroke {
+  text-shadow:
+  -1px -1px 0 #fff,
+  1px -1px 0 #fff,
+  -1px 1px 0 #fff,
+  1px 1px 0 #fff;
+}
+
 // grid
 
 @mixin grid-wrap {

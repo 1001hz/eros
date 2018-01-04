@@ -4,7 +4,6 @@ import { MaterialModule } from '../material/material.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { NavComponent } from './nav/nav.component';
 
 import { ApiService } from './services/api.service';
 import { UserService } from './services/user.service';
@@ -23,6 +22,8 @@ import { LoaderComponent } from './loader/loader.component';
 
 import { ApiInterceptor } from './interceptors/api.interceptor';
 
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -31,11 +32,10 @@ import { ApiInterceptor } from './interceptors/api.interceptor';
     HttpClientModule
   ],
   exports: [
-    NavComponent,
     LoaderComponent,
     ToastComponent
   ],
-  declarations: [NavComponent, ToastComponent, LoaderComponent],
+  declarations: [ToastComponent, LoaderComponent],
   providers: [
     ApiService,
     UserService,

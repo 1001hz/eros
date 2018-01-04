@@ -21,8 +21,26 @@ import { UserEffects } from './shared/effects/user-effects.service';
 
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
+import { FeatureListComponent } from './landing/landing-components';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+// Observable class extensions
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/from';
+
+// Observable operators
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/first';
+import 'rxjs/add/operator/reduce';
+
 
 let rootReducer = {
   user: userReducer,
@@ -35,7 +53,8 @@ let rootReducer = {
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent
+    LandingComponent,
+    FeatureListComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,4 +1,6 @@
-import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
 import { Wedding } from '../../shared/models/wedding.model';
 
 export class WeddingServiceStub {

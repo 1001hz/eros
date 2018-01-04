@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LoaderService } from '../services/loader.service';
 import { LoaderServiceStub } from '../services/loader.service.stub';
-import { Observable} from 'rxjs/Rx';
+import { Observable} from 'rxjs/Observable';
 import { LoaderComponent } from './loader.component';
 
 describe('LoaderComponent', () => {

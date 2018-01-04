@@ -1,57 +1,75 @@
+
 .section {
 
-  min-height: 100vh;
+  &__inner {
+    @include grid-wrap();
+    @include grid-row();
+    min-height: 100vh;
+    padding-left: $padding-small;
+    padding-right: $padding-small;
+    padding-top: $padding-medium;
+    padding-bottom: $padding-medium;
 
-  &__image {
-    height: 100vh;
-    background-size:cover;
+    &--banner {
+      height: 100vh;
+      padding: 0;
+    }
+
+    &--auto {
+      min-height: auto;
+    }
   }
+
+  &__heading-wrapper {
+    @include grid-wrap();
+    @include grid-row();
+  }
+
+
 
   &__heading {
     text-align: center;
-    margin-top: $text-buffer;
-
-    &--light {
-      color: $white;
-    }
-  }
-
-  &__sub-heading {
-    text-align: center;
-  }
-
-  &__drawer-cta {
-    float: right;
-  }
-
-  &__drawer-back {
-    font-size: 37px;
-    color: $pink;
-  }
-
-  &__text {
-    text-align: center;
-    color: $black;
-    margin-bottom: $text-buffer;
-    font-family: $font-body;
-    line-height: 1.8;
-    letter-spacing: 0.7px;
+    padding: $padding-medium 0 !important;
   }
 
   &__content {
-    @include grid-wrap();
 
-    &--pad {
-      padding: $gutter-width;
+
+
+    p {
+      line-height: 1.8em;
+      text-align: center;
+      font-family: $font-body;
+    }
+
+    &--valign {
+      @include vertical-align();
+    }
+
+    &--halign {
+      @include horizontal-align();
     }
   }
 
-  &__cta {
-    margin: $gutter-width;
-    text-align: center;
+  &--primary {
+    background-color: $primary;
   }
 
-  &--app {
+  &--dark {
+    background-color: $black;
+  }
+
+  &--first {
     padding-top: $nav-height;
+  }
+}
+
+@include desktop() {
+  .section {
+
+    &__inner {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }

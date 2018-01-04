@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { IResponse } from '../../shared/interfaces/response.interface';
 

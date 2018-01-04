@@ -4,7 +4,7 @@ import { WeddingService } from '../../core/services/wedding.service';
 import { ToastService } from '../../core/services/toast.service';
 import { Guest } from '../../shared/models/guest.model';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-guestlist',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoaderService } from '../services/loader.service';
-import { Observable} from 'rxjs/Rx';
+import { Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-loader',
@@ -9,7 +9,7 @@ import { Observable} from 'rxjs/Rx';
 })
 export class LoaderComponent implements OnInit {
 
-  private loading$: Observable<boolean>;
+  public loading$: Observable<boolean>;
 
   constructor(private loaderService: LoaderService) { }
 

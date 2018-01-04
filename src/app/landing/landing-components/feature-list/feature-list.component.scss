@@ -1,0 +1,39 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/fonts';
+@import '../../../../styles/breakpoints';
+@import '../../../../styles/mixins';
+
+.feature-list {
+
+  list-style: none;
+  padding: 0;
+  margin: $padding-large 0 0 0;
+
+  &__icon {
+    .mat-icon {
+      color: $primary;
+    }
+  }
+
+  li {
+    font-family: $font-body;
+    margin-bottom: $padding-large;
+
+    span {
+      display: inline-block;
+      margin-left: $padding-small;
+      vertical-align: middle;
+    }
+  }
+}
+
+@include desktop() {
+  .feature-list {
+    @include grid-wrap;
+    @include grid-row;
+    width: 600px;
+    li {
+      @include grid-item(2);
+    }
+  }
+}

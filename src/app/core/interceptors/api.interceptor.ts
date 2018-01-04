@@ -1,6 +1,6 @@
 import {Injectable, Inject} from '@angular/core';
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse} from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { UserService } from '../services/user.service';
 import { LoaderService } from '../services/loader.service';
 import { APP_CONFIG } from '../../app-config/app-config.module';

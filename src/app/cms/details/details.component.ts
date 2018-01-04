@@ -4,7 +4,7 @@ import { WeddingService } from '../../core/services/wedding.service';
 import { ToastService } from '../../core/services/toast.service';
 import { Wedding } from '../../shared/models/wedding.model';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { DeleteWeddingDialogComponent } from '../cms-components/delete-wedding-dialog/delete-wedding-dialog.component';
 

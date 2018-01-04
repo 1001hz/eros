@@ -3,7 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ForgotPasswordComponent } from './forgot-password.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { AuthServiceStub } from '../../core/services/auth.service.stub';
 
 describe('ForgotPasswordComponent', () => {

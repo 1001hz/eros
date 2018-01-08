@@ -50,6 +50,20 @@ export class WeddingService {
   }
 
   /**
+    Get wedding from the server
+   */
+  fetchWedding(weddingId) {
+
+    return this.apiService.makeRequest(this.config.apiRoutes.getWedding, {weddingId: weddingId})
+      .map((wedding) => {
+        let _wedding = new Wedding();
+        // extract data from server response
+        _wedding.makeFromResponse(wedding);
+        return _wedding;
+      })
+  }
+
+  /**
    * Get all weddings from the server, put in the local store
    */
 

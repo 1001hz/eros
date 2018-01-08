@@ -11,6 +11,7 @@ import { EditCeremonyComponent } from './edit-ceremony/edit-ceremony.component';
 import { EditAftersComponent } from './edit-afters/edit-afters.component';
 import { EditAccountComponent } from './edit-account/edit-account.component';
 import { CmsNavComponent } from './cms-nav/cms-nav.component';
+import { SubNavComponent } from './sub-nav/sub-nav.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { CmsNavComponent } from './cms-nav/cms-nav.component';
     EditCeremonyComponent,
     EditAftersComponent,
     EditAccountComponent,
-    CmsNavComponent
+    CmsNavComponent,
+    SubNavComponent
   ]
 })
 export class CmsComponentsModule { }

@@ -1,19 +1,20 @@
-<section class="section section--app">
-  <div class="section__content section__content--pad">
+<div class="section section--first">
 
-      <div>
+  <section class="section__inner">
+
+    <div class="section__heading-wrapper">
+      <h2 class="section__heading">Weddings</h2>
+    </div>
+
+    <div class="section__content">
+      <p>
         <app-add-wedding (onAdd)="onAdd($event)"></app-add-wedding>
-      </div>
+      </p>
+    </div>
 
-  </div>
-
-  <div class="section__content section__content--pad">
-
-    <h2 class="home__heading">Weddings</h2>
-
-    <div  *ngIf="(weddings | async)">
+    <div class="section__content" *ngIf="(weddings | async)">
       <app-wedding-list [weddings]="weddings"></app-wedding-list>
     </div>
 
-  </div>
-</section>
+  </section>
+</div>

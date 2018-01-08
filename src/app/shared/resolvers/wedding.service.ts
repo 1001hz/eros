@@ -11,7 +11,14 @@ export class WeddingResolve implements Resolve<any> {
   constructor(private weddingService: WeddingService) { }
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.weddingService.fetchWeddings().first();
+
+    if(route.routeConfig.path === ':weddingId'){
+      return this.weddingService.fetchWedding(route.paramMap.get('weddingId'));
+    }
+    else{
+      return this.weddingService.fetchWeddings().first();
+    }
+
   }
 
 }

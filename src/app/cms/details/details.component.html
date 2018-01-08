@@ -1,69 +1,75 @@
-<section class="section section--app">
-  <div class="section__drawer">
+<div class="section section--first">
+
+  <section class="section__inner">
+
+    <!--
     <a [routerLink]="['/cms']">
       <i class="material-icons section__drawer-back">keyboard_arrow_left</i>
     </a>
-    <div class="section__drawer-cta">
-      <button mat-button color="warn" (click)="onRemoveWedding()">Delete</button>
-    </div>
-  </div>
-
-  <div class="section__content section__content--pad">
-
-
-    <h2 class="details__heading">{{(wedding$|async).name}}</h2>
-
-    <div class="details__preview">
-      <a [routerLink]="['/wedding', (wedding$|async)._id]">Visit the site</a> <mat-icon>launch</mat-icon>
+-->
+    <div class="section__heading-wrapper">
+      <h2 class="section__heading">{{(wedding$|async).name}}</h2>
     </div>
 
-    <mat-accordion class="">
-      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title class="details__panel-title">
-            Basic Details
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+    <div class="section__content">
+      <div class="details__preview">
+        <a [routerLink]="['/wedding', (wedding$|async)._id]">Visit the site</a> <mat-icon>launch</mat-icon>
+      </div>
+    </div>
 
-        <app-edit-details [wedding]="wedding$|async" (onUpdateWedding)="onUpdateWedding($event)"></app-edit-details>
+    <div class="section__content">
 
-        <mat-action-row>
-          <button mat-button color="primary" (click)="nextStep()">Next</button>
-        </mat-action-row>
-      </mat-expansion-panel>
+      <mat-accordion class="">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="details__panel-title">
+              Basic Details
+            </mat-panel-title>
+          </mat-expansion-panel-header>
 
-      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title class="details__panel-title">
-            Ceremony
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+          <app-edit-details [wedding]="wedding$|async" (onUpdateWedding)="onUpdateWedding($event)"></app-edit-details>
 
-        <app-edit-ceremony [wedding]="wedding$|async" (onUpdateWedding)="onUpdateWedding($event)"></app-edit-ceremony>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
 
-        <mat-action-row>
-          <button mat-button color="primary" (click)="lastStep()">Previous</button>
-          <button mat-button color="primary" (click)="nextStep()">Next</button>
-        </mat-action-row>
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="details__panel-title">
+              Ceremony
+            </mat-panel-title>
+          </mat-expansion-panel-header>
 
-      </mat-expansion-panel>
+          <app-edit-ceremony [wedding]="wedding$|async" (onUpdateWedding)="onUpdateWedding($event)"></app-edit-ceremony>
 
-      <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title class="details__panel-title">
-            Afters
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="lastStep()">Previous</button>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+          </mat-action-row>
 
-        <app-edit-afters [wedding]="wedding$|async" (onUpdateWedding)="onUpdateWedding($event)"></app-edit-afters>
+        </mat-expansion-panel>
 
-        <mat-action-row>
-          <button mat-button color="primary" (click)="lastStep()">Previous</button>
-        </mat-action-row>
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="details__panel-title">
+              Afters
+            </mat-panel-title>
+          </mat-expansion-panel-header>
 
-      </mat-expansion-panel>
+          <app-edit-afters [wedding]="wedding$|async" (onUpdateWedding)="onUpdateWedding($event)"></app-edit-afters>
 
-    </mat-accordion>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="lastStep()">Previous</button>
+          </mat-action-row>
 
-  </div>
-</section>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+
+    </div>
+
+    <button mat-button color="warn" (click)="onRemoveWedding()">Delete</button>
+
+  </section>
+</div>

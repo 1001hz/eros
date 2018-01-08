@@ -14,6 +14,10 @@
     background-color: $black;
   }
 
+  &--cms {
+    background-color: $black;
+  }
+
   &__logo {
     width: 40px;
     vertical-align: middle;
@@ -75,6 +79,10 @@
     color: $white;
 
     &--auth {
+      background-color: $black;
+    }
+
+    &--cms {
       background-color: $black;
     }
 

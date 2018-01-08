@@ -1,0 +1,45 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/fonts';
+@import '../../../../styles/breakpoints';
+@import '../../../../styles/mixins';
+
+.sub-nav {
+
+  list-style: none;
+  padding: $padding-medium 0 0 0;
+  margin: 0;
+  border-top: dashed 1px $grey;
+
+  &__icon {
+    .mat-icon {
+      color: $primary;
+    }
+  }
+
+  li {
+    font-family: $font-body;
+    margin-bottom: $padding-large;
+
+    span {
+      display: inline-block;
+      margin-left: $padding-small;
+      vertical-align: middle;
+    }
+
+    a {
+      color: $black;
+      text-decoration: none;
+      border-bottom: dotted 1px $black;
+    }
+  }
+}
+
+@include desktop() {
+  .sub-nav {
+    @include grid-wrap;
+    @include grid-row;
+    li {
+      @include grid-item(2);
+    }
+  }
+}

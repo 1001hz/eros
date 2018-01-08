@@ -31,6 +31,10 @@ export const ApiRoutes = {
     method: 'GET',
     path: '/weddings'
   },
+  getWedding: {
+    method: 'GET',
+    path: '/wedding/{weddingId}'
+  },
   addWedding: {
     method: 'POST',
     path: '/weddings'

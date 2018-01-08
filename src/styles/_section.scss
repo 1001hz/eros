@@ -34,7 +34,8 @@
 
   &__content {
 
-
+    //margin-bottom: $padding-medium;
+    padding: 0 $padding-medium $padding-medium $padding-medium;
 
     p {
       line-height: 1.8em;
@@ -53,6 +54,14 @@
 
   &--primary {
     background-color: $primary;
+
+    h2{
+      color: $white;
+    }
+
+    p {
+      color: $white;
+    }
   }
 
   &--dark {

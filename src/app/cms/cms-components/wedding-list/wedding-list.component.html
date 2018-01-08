@@ -10,12 +10,7 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <mat-list>
-      <a mat-list-item [routerLink]="[wedding._id, 'details']" routerLinkActive="active">The Wedding Details</a>
-      <a mat-list-item [routerLink]="[wedding._id, 'guestlist']" routerLinkActive="active">Guest List</a>
-      <a mat-list-item [routerLink]="['auth', 'login']" routerLinkActive="active">Invitations</a>
-      <a mat-list-item [routerLink]="['auth', 'login']" routerLinkActive="active">Seating Plan</a>
-    </mat-list>
+    <app-sub-nav [wedding]="wedding"></app-sub-nav>
 
   </mat-expansion-panel>
 </div>

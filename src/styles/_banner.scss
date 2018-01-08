@@ -17,6 +17,7 @@
 
   &__heading-wrapper {
     text-align: center;
+    padding: 0 $padding-medium;
   }
 
   &__cta {
@@ -32,11 +33,11 @@
     font-weight: normal;
 
     &--one {
-      padding: 14px 0;
+      padding: $padding-medium 0;
     }
 
     &--two {
-
+      padding: $padding-medium 0;
     }
 
     &--alt {

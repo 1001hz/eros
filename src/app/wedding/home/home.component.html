@@ -1,46 +1,88 @@
-<section class="section banner">
-  <div class="section__image banner__image" style="background-image:url(/assets/images/flowers.jpg)">
-    <div class="section__content section__content--pad banner__content">
-      <h1 class="banner__heading banner__heading--border">Deirdre <br /><span class="banner__heading--alt">&</span> <br /> John</h1>
-      <p class="banner__icon">
-        <mat-icon>favorite</mat-icon>
-      </p>
-      <p class="banner__subtext">Saturday, September 1st 2018</p>
+<div class="section banner">
 
-      <p class="section__cta">
+  <section class="section__inner section__inner--banner">
+
+    <div class="section__content section__content--valign">
+
+      <div class="banner__heading-wrapper">
+
+        <h1 class="banner__heading banner__heading--one">{{wedding.name}}</h1>
+
+        <h2 class="banner__heading banner__heading--two">{{wedding.date | date: 'dd MMMM yyyy'}}</h2>
+      </div>
+
+      <p class="banner__cta">
         <button mat-raised-button color="primary" (click)="onGoToRsvp()">RSVP</button>
       </p>
+
     </div>
-  </div>
-</section>
 
-<section class="section">
-  <div class="section__content section__content--pad">
-    <h1 class="section__heading" data-aos="fade-up">The Ceremony</h1>
-    <p class="section__text" data-aos="fade-up">
-      Tin Chapel, Mount Druid, Westmeath, Ireland
-    </p>
-    <p class="section__text">
-      There are millions of songs on Spotify. Play your favorites, discover new tracks, and build the perfect collection.
-    </p>
-  </div>
-  <div class="section__content">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2376.303636393532!2d-7.491110684157818!3d53.4451582799999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485db9083816c0e9%3A0x53519e270418aaad!2sMount+Druid+-+Boutique+Camping!5e0!3m2!1sen!2smx!4v1511488458963" width="100%" height="450" frameborder="0" style="border:0"></iframe>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="section__content section__content--pad">
-    <h1 class="section__heading">The Afters</h1>
-    <p class="section__text">
-      The Barn, Mount Druid, Westmeath, Ireland
-    </p>
-    <p class="section__text">
-      There are millions of songs on Spotify. Play your favorites, discover new tracks, and build the perfect collection.
-    </p>
-  </div>
-  <div class="section__content">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2376.303636393532!2d-7.491110684157818!3d53.4451582799999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485db9083816c0e9%3A0x53519e270418aaad!2sMount+Druid+-+Boutique+Camping!5e0!3m2!1sen!2smx!4v1511488458963" width="100%" height="450" frameborder="0" style="border:0"></iframe>
-  </div>
-</section>
+</div>
+
+
+<div class="section">
+
+  <section class="section__inner">
+
+    <div class="section__heading-wrapper">
+      <h2 class="section__heading">The Ceremony</h2>
+    </div>
+
+    <div class="section__content">
+      <p>
+        <b>{{wedding.ceremonyVenue}}</b><br />
+        {{wedding.ceremonyLocation}}
+      </p>
+
+      <p>
+        {{wedding.ceremonyTime}}
+      </p>
+    </div>
+
+    <div class="section__content">
+      <p>
+        {{wedding.ceremonyInfo}}
+      </p>
+    </div>
+
+  </section>
+</div>
+
+<div class="section">
+  <iframe [src]="wedding.ceremonyMap | safe" width="100%" height="450" frameborder="0" style="border:0"></iframe>
+</div>
+
+<div class="section section--primary">
+
+  <section class="section__inner">
+
+    <div class="section__heading-wrapper">
+      <h2 class="section__heading">The Afters</h2>
+    </div>
+
+    <div class="section__content">
+      <p>
+        <b>{{wedding.aftersVenue}}</b><br />
+        {{wedding.aftersLocation}}
+      </p>
+      <p>
+        {{wedding.aftersTime}}
+      </p>
+    </div>
+
+    <div class="section__content">
+      <p>
+        {{wedding.aftersInfo}}
+      </p>
+
+    </div>
+
+  </section>
+</div>
+
+<div class="section">
+  <iframe [src]="wedding.aftersMap | safe" width="100%" height="450" frameborder="0" style="border:0"></iframe>
+</div>
 

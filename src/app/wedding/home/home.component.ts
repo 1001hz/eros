@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   public rsvpCode: string;
   public weddingId: string;
+  private wedding;
 
   constructor(
     public dialog: MatDialog,
@@ -20,15 +21,14 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe( params => {
-      this.weddingId = params['weddingId'];
-    });
+    this.wedding = this.route.snapshot.data['wedding'];
+    console.log(this.wedding);
   }
 
   onGoToRsvp() {
     let dialogRef = this.dialog.open(RsvpDialogComponent, {
 
-      data: { weddingId: this.weddingId ,rsvpCode: this.rsvpCode }
+      data: { weddingId: this.wedding._id ,rsvpCode: this.rsvpCode }
     });
 
     dialogRef.afterClosed().subscribe(rsvpCode => {

@@ -1,10 +1,54 @@
-<button mat-icon-button [mat-menu-trigger-for]="menu">
-  <mat-icon>more_vert</mat-icon>
-</button>
-<mat-menu x-position="before" #menu="matMenu">
-  <div>
-    <button [routerLink]="['account']" routerLinkActive="active" mat-menu-item>Account</button>
-    <button [routerLink]="['/cms']" routerLinkActive="active" mat-menu-item>Dashboard</button>
-    <button (click)="onLogout()" mat-menu-item>Logout</button>
+<div class="nav nav--cms">
+
+  <div class="nav__wrapper nav__mobile" [appClassScroll]="100" appClassScrollName="nav__mobile--scrolled">
+
+    <div class="nav__title">
+      <img src="/assets/images/elf_pink.png" class="nav__logo" />
+      Wedding Elf
+    </div>
+
+    <div class="nav__menu">
+
+      <button class="nav__menu-button" mat-icon-button [mat-menu-trigger-for]="menu">
+        <mat-icon>dehaze</mat-icon>
+      </button>
+
+      <div class="nav__mat-menu">
+        <mat-menu x-position="before" #menu="matMenu">
+          <button [routerLink]="['account']" routerLinkActive="active" mat-menu-item>Account</button>
+          <button [routerLink]="['/cms']" routerLinkActive="active" mat-menu-item>Dashboard</button>
+          <button (click)="onLogout()" mat-menu-item>Logout</button>
+        </mat-menu>
+      </div>
+
+    </div>
   </div>
-</mat-menu>
+
+  <div class="nav__wrapper nav__desktop">
+
+    <div class="nav__title">
+      <img src="/assets/images/elf_pink.png" class="nav__logo" />
+      Wedding Elf
+    </div>
+
+    <div class="nav__menu">
+
+      <ul>
+        <li>
+          <button [routerLink]="['account']" routerLinkActive="active" mat-raised-button color="primary">Account</button>
+        </li>
+
+        <li>
+          <button [routerLink]="['/cms']" routerLinkActive="active" mat-raised-button color="primary">Dashboard</button>
+        </li>
+
+        <li>
+          <button (click)="onLogout()" mat-raised-button color="accent">Logout</button>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>

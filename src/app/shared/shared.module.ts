@@ -7,6 +7,7 @@ import { GuestResolve } from './resolvers/guest.service';
 import { SafePipe } from './pipes/safe.pipe';
 import { AuthActions } from './actions/auth.actions';
 import { UserActions } from './actions/user.actions';
+import { ToastActions } from './actions/toast.actions';
 import { NavComponent } from './nav/nav.component';
 import { ClassScrollDirective } from './directives/class-scroll.directive';
 
@@ -32,7 +33,8 @@ import { ClassScrollDirective } from './directives/class-scroll.directive';
     WeddingResolve,
     GuestResolve,
     AuthActions,
-    UserActions
+    UserActions,
+    ToastActions
   ]
 })
 export class SharedModule { }

@@ -16,6 +16,12 @@
     }
   }
 
+  &__link {
+    &--disabled {
+      cursor: not-allowed;
+    }
+  }
+
   li {
     font-family: $font-body;
     margin-bottom: $padding-large;

@@ -1,11 +1,20 @@
 <ul class="sub-nav">
 
   <li class="sub-nav__item">
+      <span class="sub-nav__icon">
+        <mat-icon>phone_android</mat-icon>
+      </span>
+      <span class="sub-nav__text">
+        <a [routerLink]="[wedding._id, 'details']" routerLinkActive="active">The Wedding Website Details</a>
+      </span>
+    </li>
+
+  <li class="sub-nav__item">
     <span class="sub-nav__icon">
       <mat-icon>email</mat-icon>
     </span>
     <span class="sub-nav__text">
-      <a [routerLink]="['auth', 'login']" routerLinkActive="active">Invitations</a>
+      <a class="sub-nav__link sub-nav__link--disabled">Invitations</a>
     </span>
   </li>
 
@@ -14,7 +23,7 @@
       <mat-icon>reply</mat-icon>
     </span>
     <span class="sub-nav__text">
-      <a [routerLink]="['auth', 'login']" routerLinkActive="active">RSVPs</a>
+      <a class="sub-nav__link sub-nav__link--disabled">RSVPs</a>
     </span>
   </li>
 
@@ -23,16 +32,7 @@
       <mat-icon>group</mat-icon>
     </span>
     <span class="sub-nav__text">
-      <a [routerLink]="[wedding._id, 'guestlist']" routerLinkActive="active">Guest List</a>
-    </span>
-  </li>
-
-  <li class="sub-nav__item">
-    <span class="sub-nav__icon">
-      <mat-icon>phone_android</mat-icon>
-    </span>
-    <span class="sub-nav__text">
-      <a [routerLink]="[wedding._id, 'details']" routerLinkActive="active">The Wedding Website Details</a>
+      <a class="sub-nav__link sub-nav__link--disabled">Guest List</a>
     </span>
   </li>
 

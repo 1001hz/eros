@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-cms-nav',
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CmsNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   onLogout() {
-    //TODO: implement logout
+    this.authService.logout();
   }
 }

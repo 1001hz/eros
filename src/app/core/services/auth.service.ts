@@ -71,29 +71,25 @@ export class AuthService {
     this.store.dispatch(this.authActions.signupBegin(signUpRequest));
   }
 
-  resetPasswordLink(email: string): Observable<boolean> {
+  resetPasswordLink(email: string): void {
 
-    let data: IResetPasswordLinkRequest = {
+    let resetPasswordLinkRequest: IResetPasswordLinkRequest = {
       email: email
     };
 
-    return this.http.post(this.config.apiRoutes.resetPasswordLink.path, data)
-      .map( ()=> {
-        return true;
-      });
+    this.store.dispatch(this.authActions.passwordResetLinkBegin(resetPasswordLinkRequest));
   }
 
-  resetPassword(password: string, token: string): Observable<boolean> {
+  resetPassword(email: string, password: string, token: string): void {
 
-    let data: IResetPasswordRequest = {
+    let passwordResetRequest: IResetPasswordRequest = {
+      email: email,
       password: password,
       token: token
     };
 
-    return this.http.post(this.config.apiRoutes.resetPassword.path, data)
-      .map( ()=> {
-        return true;
-      })
+    this.store.dispatch(this.authActions.passwordResetBegin(passwordResetRequest));
+
   }
 
 }

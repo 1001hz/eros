@@ -15,6 +15,7 @@ import { weddingReducer } from './shared/reducers/wedding.reducer';
 import { guestReducer } from './shared/reducers/guest.reducer';
 import { authReducer } from './shared/reducers/auth.reducer';
 import { accountReducer } from './shared/reducers/account.reducer';
+import { toastReducer } from './shared/reducers/toast.reducer';
 
 import { AuthEffects } from './shared/effects/auth-effects.service';
 import { UserEffects } from './shared/effects/user-effects.service';
@@ -28,6 +29,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 // Observable class extensions
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/from';
+import 'rxjs/add/observable/throw';
 
 // Observable operators
 import 'rxjs/add/operator/map';
@@ -47,7 +49,8 @@ let rootReducer = {
   weddings: weddingReducer,
   guests: guestReducer,
   auth: authReducer,
-  account: accountReducer
+  account: accountReducer,
+  toasts: toastReducer
 };
 
 @NgModule({

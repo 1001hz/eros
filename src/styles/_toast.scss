@@ -1,0 +1,24 @@
+.toast {
+
+    position: fixed;
+    padding-top: $padding-medium;
+    top: $nav-height;
+    width: 100%;
+    z-index: 3;
+    
+    &__list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    &__item {
+        background-color: $grey;
+        border-radius: 2px; 
+        padding: $padding-small;
+        color: $black;
+        font-family: $font-body;
+    }
+}

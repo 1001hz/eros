@@ -1,9 +1,16 @@
-<section class="section section--app">
-  <div class="section__content section__content--pad">
+<div class="section section--first">
 
-    <h2 class="account__heading">Account</h2>
+  <section class="section__inner">
 
-    <app-edit-account [accountState]="accountState | async" [user]="user | async" (onUpdateUser)="onUpdateUser($event)"></app-edit-account>
+    <div class="section__heading-wrapper">
+      <h2 class="section__heading">Account</h2>
+    </div>
 
-  </div>
-</section>
+    <div class="section__content">
+
+      <app-edit-account [accountState]="accountState | async" [user]="user | async" (onUpdateUser)="onUpdateUser($event)"></app-edit-account>
+
+    </div>
+
+  </section>
+</div>

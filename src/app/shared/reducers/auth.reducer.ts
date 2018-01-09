@@ -5,7 +5,9 @@ import { IAuthState } from '../state/auth.state';
 
 let initialState: IAuthState = {
   loggingIn: false,
-  signingUp: false
+  signingUp: false,
+  resettingPassword: false,
+  requestingPasswordLink: false
 };
 
 export function authReducer(state:IAuthState = initialState, action: CustomAction = null) {
@@ -21,6 +23,26 @@ export function authReducer(state:IAuthState = initialState, action: CustomActio
         loggingIn: false
       } );
 
+    case AuthActions.PASSWORD_RESET_BEGIN:
+      return Object.assign({}, state, {
+        resettingPassword: true
+      } );
+    
+    case AuthActions.PASSWORD_RESET_FINISHED:
+      return Object.assign({}, state, {
+        resettingPassword: false
+      } );
+
+    case AuthActions.PASSWORD_RESET_LINK_BEGIN:
+    return Object.assign({}, state, {
+      requestingPasswordLink: true
+    } );
+  
+  case AuthActions.PASSWORD_RESET_LINK_FINISHED:
+    return Object.assign({}, state, {
+      requestingPasswordLink: false
+    } );
+    
     default:
       return state;
   }

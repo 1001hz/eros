@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-wedding-nav',
@@ -6,8 +6,6 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./wedding-nav.component.scss']
 })
 export class WeddingNavComponent implements OnInit {
-
-  @Input() version: string;
 
   constructor() { }
 

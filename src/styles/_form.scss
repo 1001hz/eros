@@ -11,6 +11,10 @@
 
   &__cta-link {
     text-align: center;
+    padding-top: $padding-large;
+    a {
+      color: $primary;
+    }
   }
 
   label {

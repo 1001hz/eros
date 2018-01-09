@@ -21,11 +21,11 @@ export const ApiRoutes = {
   },
   resetPasswordLink: {
     method: 'POST',
-    path: '/reset-password-link'
+    path: '/password/forgot'
   },
   resetPassword: {
     method: 'POST',
-    path: '/reset-password'
+    path: '/password/reset'
   },
   getWeddings: {
     method: 'GET',

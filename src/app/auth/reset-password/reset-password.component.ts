@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { IAuthState } from '../../shared/state/auth.state';
+
+interface AuthState {
+  auth: IAuthState
+}
 
 @Component({
   selector: 'app-reset-password',
@@ -10,40 +16,32 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  public resetPasswordForm: FormGroup;
-  public sending: boolean;
+  public form: FormGroup;
   public resetToken: string;
+  public authState$;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store<AuthState>
   ) {
+    this.authState$ = this.store.select('auth');
     this.route.params.subscribe( (params)=> {
       this.resetToken = params["token"];
     })
   }
 
   ngOnInit() {
-    this.sending = false;
-    this.resetPasswordForm = this.fb.group({
+    this.form = this.fb.group({
+      'email': ['', Validators.required],
       'password': ['', Validators.required],
       'confirm': ['', Validators.required]
     });
   }
 
   onResetPassword(value) {
-    this.sending = true;
-
-    this.authService.resetPassword(value.password, this.resetToken).subscribe( (successFlag)=> {
-        this.router.navigate(['login']);
-      },
-      () => {},
-      () => {
-        this.sending = false;
-      }
-    )
+    this.authService.resetPassword(value.email, value.password, this.resetToken);
   }
 
 }

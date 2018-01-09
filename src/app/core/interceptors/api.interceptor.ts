@@ -1,5 +1,5 @@
 import {Injectable, Inject} from '@angular/core';
-import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from '../services/user.service';
 import { LoaderService } from '../services/loader.service';
@@ -35,7 +35,7 @@ export class ApiInterceptor implements HttpInterceptor {
       .catch(err => {
         if (err instanceof HttpErrorResponse) {
           console.log("From interceptor", err);
-          return Observable.throw(err.message || 'Server error');
+          return Observable.throw(err.error.message || 'Server error');
         }
       })
   }

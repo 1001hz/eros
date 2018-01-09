@@ -2,7 +2,7 @@
 
   <div class="nav__wrapper nav__mobile" [appClassScroll]="100" appClassScrollName="nav__mobile--scrolled">
 
-    <div class="nav__title">
+    <div class="nav__title" [routerLink]="['']">
       <img src="/assets/images/elf_pink.png" class="nav__logo" />
       Wedding Elf
     </div>
@@ -15,8 +15,8 @@
 
       <div class="nav__mat-menu">
         <mat-menu x-position="before" #menu="matMenu">
-          <button [routerLink]="['auth', 'login']" routerLinkActive="active" mat-menu-item>Login</button>
-          <button [routerLink]="['auth', 'signup']" routerLinkActive="active" mat-menu-item>Signup</button>
+          <button [routerLink]="['/auth', 'login']" routerLinkActive="active" mat-menu-item>Login</button>
+          <button [routerLink]="['/auth', 'signup']" routerLinkActive="active" mat-menu-item>Signup</button>
         </mat-menu>
       </div>
 
@@ -34,11 +34,11 @@
 
       <ul>
         <li>
-          <button color="primary" [routerLink]="['auth', 'login']" routerLinkActive="active" mat-raised-button>Login</button>
+          <button color="primary" [routerLink]="['/auth', 'login']" routerLinkActive="active" mat-raised-button>Login</button>
         </li>
 
         <li>
-          <button color="primary" [routerLink]="['auth', 'signup']" routerLinkActive="active" mat-raised-button>Signup</button>
+          <button color="primary" [routerLink]="['/auth', 'signup']" routerLinkActive="active" mat-raised-button>Signup</button>
         </li>
       </ul>
 

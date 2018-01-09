@@ -1,3 +1,5 @@
-<p>
-  toast works!
-</p>
+<div class="toast">
+  <ul class="toast__list">
+    <li [@flyInOut]="'in'" class="toast__item toast__item--show" *ngFor="let toast of toasts$ | async">{{toast.message}}</li>
+  </ul>
+</div>

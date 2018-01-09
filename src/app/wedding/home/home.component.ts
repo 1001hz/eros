@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { RsvpDialogComponent } from '../rsvp-dialog/rsvp-dialog.component';
 import { Router } from '@angular/router';
+import { Wedding } from '../../shared/models/wedding.model';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   public rsvpCode: string;
   public weddingId: string;
-  private wedding;
+  public wedding: Wedding;
 
   constructor(
     public dialog: MatDialog,

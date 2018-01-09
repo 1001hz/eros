@@ -30,6 +30,7 @@
   }
 
   &__title {
+    cursor: pointer;
     @include grid-item(2);
     @include vertical-align();
     padding-left: $gutter-width;

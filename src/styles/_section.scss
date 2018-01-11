@@ -1,6 +1,9 @@
 
 .section {
 
+  background-color: $white;
+  position: relative;
+
   &__inner {
     @include grid-wrap();
     @include grid-row();

@@ -10,6 +10,7 @@ import { UserActions } from './actions/user.actions';
 import { ToastActions } from './actions/toast.actions';
 import { NavComponent } from './nav/nav.component';
 import { ClassScrollDirective } from './directives/class-scroll.directive';
+import { ScrollToViewDirective } from './directives/scroll-to-view.directive';
 
 
 @NgModule({
@@ -22,12 +23,14 @@ import { ClassScrollDirective } from './directives/class-scroll.directive';
     MaterialModule,
     SafePipe,
     NavComponent,
-    ClassScrollDirective
+    ClassScrollDirective,
+    ScrollToViewDirective
   ],
   declarations: [
     SafePipe,
     NavComponent,
-    ClassScrollDirective
+    ClassScrollDirective,
+    ScrollToViewDirective
   ],
   providers: [
     WeddingResolve,

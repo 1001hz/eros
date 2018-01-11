@@ -1,0 +1,13 @@
+.scroll-to-view {
+
+    opacity: 0;
+    transform: translateY(50px);
+
+    &.in-view {
+        opacity: 1;
+        transition-property: all;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-in;
+        transform: translateY(0);
+    }
+}

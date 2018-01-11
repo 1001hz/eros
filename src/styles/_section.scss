@@ -41,7 +41,7 @@
 
   &__content {
 
-    //margin-bottom: $padding-medium;
+    overflow: hidden;
     padding: 0 $padding-medium $padding-medium $padding-medium;
 
     p {

@@ -1,0 +1,97 @@
+.footer {
+
+    background: linear-gradient(black, black, rgba(0,0,0, 0.8));
+
+    h2 {
+        color: $white;
+        font-family: $font-heading;
+    }
+    p {
+        color: $white;
+        font-family: $font-body;
+    }
+    a {
+        color: $white;
+    }
+    &:before {
+        background-image:url(/assets/images/flowers.jpg);
+        background-size:cover;
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        min-height: 100%;
+        opacity: 0.1;
+        z-index: 1;
+      }
+
+    &__content {
+        padding: $padding-small 0;
+
+        img {
+            width: 60px;
+            vertical-align: top;
+        }
+
+        h1 {
+            display: inline-block;
+        }
+
+        a {
+            text-decoration: none;
+            border-bottom: dotted;
+            border-width: 1px;
+
+            &:hover {
+                color: $pink;
+                transition: color $duration ease-in;
+            }
+        }
+    }
+
+    &__inner {
+        position: relative;
+        z-index: 2;
+    }
+
+    &__form {
+        input{
+            color: white;
+        }
+    }
+
+    &__form-item {
+        padding-bottom: $padding-small;
+    }
+
+}
+
+@include desktop() {
+    .footer {
+
+        &__content {
+            @include grid-item(2);
+
+            h1 {
+                text-align: right;
+                font-family: $font-heading;
+            }
+
+            &--right {
+                text-align: right;
+            }
+        }
+
+        &__cta {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            text-align: right;
+        }
+
+        &__row {
+            position: relative;
+        }
+    }
+}

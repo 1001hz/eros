@@ -75,6 +75,8 @@
     background-color: $black;
   }
 
+  
+
   &--first {
     padding-top: $nav-height;
   }
@@ -86,6 +88,10 @@
     &__inner {
       padding-left: 0;
       padding-right: 0;
+
+      &--auto {
+        min-height: 300px;
+      }
     }
   }
 }

@@ -11,26 +11,31 @@ import { ToastActions } from './actions/toast.actions';
 import { NavComponent } from './nav/nav.component';
 import { ClassScrollDirective } from './directives/class-scroll.directive';
 import { ScrollToViewDirective } from './directives/scroll-to-view.directive';
-
+import { FooterComponent } from './footer/footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     MaterialModule,
     SafePipe,
     NavComponent,
     ClassScrollDirective,
-    ScrollToViewDirective
+    ScrollToViewDirective,
+    FooterComponent
   ],
   declarations: [
     SafePipe,
     NavComponent,
     ClassScrollDirective,
-    ScrollToViewDirective
+    ScrollToViewDirective,
+    FooterComponent
   ],
   providers: [
     WeddingResolve,
